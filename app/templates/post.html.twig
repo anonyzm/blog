@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }} - IT Solutions Blog{% endblock %}
+
+{% block content %}
+<article class="post-full fade-in">
+    <header class="post-header">
+        <h1 class="post-full-title">{{ post.title }}</h1>
+        <div class="post-full-meta">
+            <span class="post-date">{{ post.date }}</span>
+            <span class="post-author">Автор: {{ post.author }}</span>
+        </div>
+    </header>
+    
+    <div class="post-content">
+        {{ post.content|raw }}
+    </div>
+    
+    <div class="post-footer mt-4">
+        <a href="/" class="btn btn-back">← Вернуться к списку публикаций</a>
+    </div>
+</article>
+{% endblock %} 

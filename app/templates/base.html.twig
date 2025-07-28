@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="{{ language ?: 'ru' }}">
+<head>
+{% block head %}
+    <meta charset="utf-8" />
+    <title>{% if title %}{{ title|e('html') }} | {% endif %} IT Solutions</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="IT architecture, development and management blog" />
+
+    <link rel="icon" type="image/png" href="/assets/images/blogo.png" />
+    <link rel="canonical" href="/" />
+{% endblock head %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/markdown.css">
+{% endblock %}
+
+</head>
+<body id="top" class="{% block body_classes %}header-fixed header-animated header-dark header-transparent sticky-footer{% endblock %}">
+    <div id="page-wrapper">
+    {% block header %}
+        <section id="header" class="section">
+            <section class="container grid-lg">
+                <nav class="navbar">
+                    <section class="navbar-section logo">
+                        {% include 'partials/logo.html.twig' %}
+                    </section>
+                    <section class="navbar-section navbar-title">
+                        {% block title %}IT Solutions{% endblock %}
+                    </section>
+                    <section class="navbar-section desktop-menu">
+                        {% include 'partials/navigation.html.twig' %}                      
+                    </section>
+                </nav>
+            </section>
+        </section>
+        <div class="mobile-menu">
+            <div class="button_container" id="toggle">
+                <span class="top"></span>
+                <span class="middle"></span>
+                <span class="bottom"></span>
+            </div>
+        </div>
+    {% endblock %}
+
+        <section id="start">
+        {% block body %}
+            <section id="body-wrapper" class="section">
+                <section class="container grid-lg">
+                    {# {% block messages %}
+                        {% include 'partials/messages.html.twig' ignore missing %}
+                    {% endblock %} #}
+                    {% block content %}{% endblock %}        
+                </section>
+            </section>
+        {% endblock %}
+        </section>
+
+    </div>
+
+    {% block footer %}
+        <section id="footer" class="section bg-gray">
+            {% include 'partials/footer.html.twig' %}
+        </section>
+    {% endblock %}
+
+    {% block mobile %}
+    <div class="mobile-container">
+        <div class="overlay" id="overlay">
+            <div class="mobile-logo">
+                {% include 'partials/logo.html.twig' %}
+            </div>
+            <nav class="overlay-menu">
+                {% include 'partials/navigation.html.twig' with {tree: true} %}
+            </nav>
+        </div>
+    </div>
+    {% endblock %}
+
+{% block javascripts %}
+    <script src="/system/assets/jquery/jquery-3.x.min.js"></script>
+    <script src="/system/assets/jquery/base.js"></script>
+{% endblock %}
+
+</body>
+</html>

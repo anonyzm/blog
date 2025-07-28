@@ -1,0 +1,25 @@
+# Главная страница
+index:
+    path: /
+    controller: App\Controller\BlogController::index
+    methods: [GET]
+    defaults:
+        _format: html
+
+# Страница типографики
+typography:
+    path: /typography
+    controller: App\Controller\BlogController::typography
+    methods: [GET]
+    defaults:
+        _format: html
+
+# Страница отдельного поста
+blog_post:
+    path: /blog/{slug}
+    controller: App\Controller\BlogController::view
+    methods: [GET]
+    requirements:
+        slug: '[a-z0-9-]+'  # Только латинские буквы, цифры и дефисы
+    defaults:
+        _format: html 

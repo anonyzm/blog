@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }} - IT Solutions Blog{% endblock %}
+
+{% block content %}
+<div class="hero fade-in">
+    <h1 class="hero-title">Добро пожаловать в IT Solutions Blog</h1>
+    <p class="hero-subtitle">Здесь вы найдете интересные статьи о технологиях, решениях и последних тенденциях в IT индустрии</p>
+</div>
+
+{# <section class="posts-section slide-up">
+    <h2 class="section-title">Последние публикации</h2>
+    
+    <div class="posts-list">
+        {% for post in posts %}
+        <article class="post-item fade-in">
+            <h3 class="post-title">
+                <a href="/blog/{{ post.slug }}">{{ post.title }}</a>
+            </h3>
+            <div class="post-excerpt">
+                {{ post.excerpt }}
+            </div>
+            <div class="post-meta">
+                <span class="post-date">{{ post.date }}</span>
+                <span class="post-author">Автор: {{ post.author }}</span>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section> #}
+{% endblock %} 
