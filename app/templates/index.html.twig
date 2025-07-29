@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ title }} - IT Solutions Blog{% endblock %}
+{% block title %}IT Solutions{% endblock %}
 
-{% block content %}
+{% block content_header %}
+<section class="container grid-lg">
     <h1>Попрощайся</h1>
     <h2>с плохими решениями</h2>
-    <p>Здесь вы найдете интересные статьи о технологиях, решениях и последних тенденциях в IT индустрии</p>
+    <p>Друг, если ты читаешь это, значит ты уже на полпути к тому, чтобы стать хорошим разработчиком. Я не знаю, как ты попал сюда, но я рад, что ты здесь <i class="fa fa-heart-o pulse"></i></p>
+</section>
+{% endblock %}
 
-{# <section class="posts-section slide-up">
+{% block content %}
+<section class="posts-section">
     <h2 class="section-title">Последние публикации</h2>
     
     <div class="posts-list">
@@ -26,5 +30,5 @@
         </article>
         {% endfor %}
     </div>
-</section> #}
+</section> 
 {% endblock %} 

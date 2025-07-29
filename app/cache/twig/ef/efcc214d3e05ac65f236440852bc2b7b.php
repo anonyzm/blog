@@ -42,7 +42,7 @@ class __TwigTemplate_6a42d5cc2dd310ad654667415222d54c extends Template
         yield "<section class=\"container ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["grid_size"] ?? null), "html", null, true);
         yield "\">
-    <p>2018-2025<i class=\"fa fa-copyright\"></i> IT Solutions with <i class=\"fa fa-heart-o pulse \"></i> by <a href=\"https://anonyzm.tech/\">Leo</a>.</p>
+    <p><i class=\"fa fa-copyright\"></i> 2018-2025 IT Solutions with <i class=\"fa fa-heart-o pulse\"></i> by <a href=\"https://anonyzm.tech/\">Leo</a>.</p>
 </section>";
         yield from [];
     }
@@ -74,7 +74,7 @@ class __TwigTemplate_6a42d5cc2dd310ad654667415222d54c extends Template
     public function getSourceContext(): Source
     {
         return new Source("<section class=\"container {{ grid_size }}\">
-    <p>2018-2025<i class=\"fa fa-copyright\"></i> IT Solutions with <i class=\"fa fa-heart-o pulse \"></i> by <a href=\"https://anonyzm.tech/\">Leo</a>.</p>
+    <p><i class=\"fa fa-copyright\"></i> 2018-2025 IT Solutions with <i class=\"fa fa-heart-o pulse\"></i> by <a href=\"https://anonyzm.tech/\">Leo</a>.</p>
 </section>", "partials/footer.html.twig", "/opt/app/templates/partials/footer.html.twig");
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerWW3zHif;
+namespace ContainerEWkytkt;
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -20,7 +20,7 @@ class getBlogControllerService extends App_Kernel_KernelDevDebugContainer
     {
         include_once \dirname(__DIR__, 2).'/src/Controller/BlogController.php';
         include_once \dirname(__DIR__, 2).'/src/Interfaces/BlogInterface.php';
-        include_once \dirname(__DIR__, 2).'/src/Service/BlogService.php';
+        include_once \dirname(__DIR__, 2).'/src/Service/BlogMarkdownService.php';
         include_once \dirname(__DIR__, 2).'/vendor/twig/twig/src/Environment.php';
         include_once \dirname(__DIR__, 2).'/vendor/twig/twig/src/Loader/LoaderInterface.php';
         include_once \dirname(__DIR__, 2).'/vendor/twig/twig/src/Loader/FilesystemLoader.php';
@@ -30,6 +30,6 @@ class getBlogControllerService extends App_Kernel_KernelDevDebugContainer
         $a->enableDebug(true);
         $a->enableAutoReload(true);
 
-        return $container->services['App\\Controller\\BlogController'] = new \App\Controller\BlogController(new \App\Service\BlogService(), $a);
+        return $container->services['App\\Controller\\BlogController'] = new \App\Controller\BlogController(new \App\Service\BlogMarkdownService(), $a);
     }
 }

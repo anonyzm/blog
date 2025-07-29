@@ -22,7 +22,7 @@ services:
 
     # Явно регистрируем BlogService как реализацию BlogInterface
     App\Interfaces\BlogInterface:
-        alias: App\Service\BlogService
+        alias: App\Service\BlogMarkdownService
 
     # Регистрируем Twig как сервис
     Twig\Environment:

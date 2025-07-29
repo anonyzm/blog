@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="/assets/css/spectre.css">
     <link rel="stylesheet" href="/assets/css/theme.css">
     <link rel="stylesheet" href="/assets/css/notices.css">
+    <link rel="stylesheet" href="/assets/css/awesome.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
 {% endblock %}
 
 </head>
@@ -51,6 +53,9 @@
 
         <section id="start">
         {% block body %}
+            <section id="top-wrapper" class="section">
+                {% block content_header %}{% endblock %}              
+            </section>
             <section id="body-wrapper" class="section">
                 <section class="container grid-lg">
                     {# {% block messages %}
@@ -84,8 +89,8 @@
     {% endblock %}
 
 {% block javascripts %}
-    <script src="/system/assets/jquery/jquery-3.x.min.js"></script>
-    <script src="/system/assets/jquery/base.js"></script>
+    <script src="/assets/js/jquery-3.x.min.js"></script>
+    <script src="/assets/js/tree-menu.js"></script>
 {% endblock %}
 
 </body>

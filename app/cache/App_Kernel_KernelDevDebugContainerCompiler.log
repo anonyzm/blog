@@ -1,4 +1,4 @@
 Symfony\Component\DependencyInjection\Compiler\RemovePrivateAliasesPass: Removed service "App\Interfaces\BlogInterface"; reason: private alias.
-Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "App\Service\BlogService" to "App\Controller\BlogController".
+Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "App\Service\BlogMarkdownService" to "App\Controller\BlogController".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "Twig\Environment" to "App\Controller\BlogController".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "Twig\Loader\FilesystemLoader" to "Twig\Environment".

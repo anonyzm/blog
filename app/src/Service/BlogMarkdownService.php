@@ -4,8 +4,9 @@ namespace App\Service;
 
 use App\Interfaces\BlogInterface;
 
-class BlogService implements BlogInterface
+class BlogMarkdownService implements BlogInterface
 {
+
     private array $posts = [
         [
             'id' => 1,

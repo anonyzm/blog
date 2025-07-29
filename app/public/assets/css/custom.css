@@ -1,0 +1,25 @@
+#start #top-wrapper h1 {
+    margin-top: 0;
+}
+
+#start section#top-wrapper {
+    border-bottom: 1px solid rgba(172, 179, 194, .2);
+}
+
+#body-wrapper .posts-section .post-header {
+    font-size: 18px;
+    font-weight: 500;
+    border-left: 10px solid #5bc0de;
+    background: #f4f8fa;
+    color: #28a1c5;
+}
+
+#body-wrapper .posts-section .post-header h3 {
+    margin: 1rem 0;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}

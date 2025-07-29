@@ -1,10 +1,10 @@
 <?php
 
-namespace ContainerWW3zHif;
+namespace ContainerEWkytkt;
 
 return [
     'App\\Interfaces\\BlogInterface' => true,
-    'App\\Service\\BlogService' => true,
+    'App\\Service\\BlogMarkdownService' => true,
     'Twig\\Environment' => true,
     'Twig\\Loader\\FilesystemLoader' => true,
 ];

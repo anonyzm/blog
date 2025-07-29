@@ -31,6 +31,7 @@ class __TwigTemplate_2654a39c8828c9ec7f195a0353cb9b3c extends Template
 
         $this->blocks = [
             'title' => [$this, 'block_title'],
+            'content_header' => [$this, 'block_content_header'],
             'content' => [$this, 'block_content'],
         ];
     }
@@ -55,8 +56,7 @@ class __TwigTemplate_2654a39c8828c9ec7f195a0353cb9b3c extends Template
     public function block_title(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["title"] ?? null), "html", null, true);
-        yield " - IT Solutions Blog";
+        yield "IT Solutions";
         yield from [];
     }
 
@@ -64,14 +64,71 @@ class __TwigTemplate_2654a39c8828c9ec7f195a0353cb9b3c extends Template
     /**
      * @return iterable<null|scalar|\Stringable>
      */
-    public function block_content(array $context, array $blocks = []): iterable
+    public function block_content_header(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
         // line 6
-        yield "    <h1>Попрощайся</h1>
+        yield "<section class=\"container grid-lg\">
+    <h1>Попрощайся</h1>
     <h2>с плохими решениями</h2>
-    <p>Здесь вы найдете интересные статьи о технологиях, решениях и последних тенденциях в IT индустрии</p>
+    <p>Друг, если ты читаешь это, значит ты уже на полпути к тому, чтобы стать хорошим разработчиком. Я не знаю, как ты попал сюда, но я рад, что ты здесь <i class=\"fa fa-heart-o pulse\"></i></p>
+</section>
+";
+        yield from [];
+    }
 
+    // line 13
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_content(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        // line 14
+        yield "<section class=\"posts-section\">
+    <h2 class=\"section-title\">Последние публикации</h2>
+    
+    <div class=\"posts-list\">
+        ";
+        // line 18
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable(($context["posts"] ?? null));
+        foreach ($context['_seq'] as $context["_key"] => $context["post"]) {
+            // line 19
+            yield "        <article class=\"post-item fade-in\">
+            <h3 class=\"post-title\">
+                <a href=\"/blog/";
+            // line 21
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "slug", [], "any", false, false, false, 21), "html", null, true);
+            yield "\">";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "title", [], "any", false, false, false, 21), "html", null, true);
+            yield "</a>
+            </h3>
+            <div class=\"post-excerpt\">
+                ";
+            // line 24
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "excerpt", [], "any", false, false, false, 24), "html", null, true);
+            yield "
+            </div>
+            <div class=\"post-meta\">
+                <span class=\"post-date\">";
+            // line 27
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "date", [], "any", false, false, false, 27), "html", null, true);
+            yield "</span>
+                <span class=\"post-author\">Автор: ";
+            // line 28
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "author", [], "any", false, false, false, 28), "html", null, true);
+            yield "</span>
+            </div>
+        </article>
+        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_key'], $context['post'], $context['_parent']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 32
+        yield "    </div>
+</section> 
 ";
         yield from [];
     }
@@ -97,21 +154,25 @@ class __TwigTemplate_2654a39c8828c9ec7f195a0353cb9b3c extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  71 => 6,  64 => 5,  52 => 3,  41 => 1,);
+        return array (  130 => 32,  120 => 28,  116 => 27,  110 => 24,  102 => 21,  98 => 19,  94 => 18,  88 => 14,  81 => 13,  71 => 6,  64 => 5,  53 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block title %}{{ title }} - IT Solutions Blog{% endblock %}
+{% block title %}IT Solutions{% endblock %}
 
-{% block content %}
+{% block content_header %}
+<section class=\"container grid-lg\">
     <h1>Попрощайся</h1>
     <h2>с плохими решениями</h2>
-    <p>Здесь вы найдете интересные статьи о технологиях, решениях и последних тенденциях в IT индустрии</p>
+    <p>Друг, если ты читаешь это, значит ты уже на полпути к тому, чтобы стать хорошим разработчиком. Я не знаю, как ты попал сюда, но я рад, что ты здесь <i class=\"fa fa-heart-o pulse\"></i></p>
+</section>
+{% endblock %}
 
-{# <section class=\"posts-section slide-up\">
+{% block content %}
+<section class=\"posts-section\">
     <h2 class=\"section-title\">Последние публикации</h2>
     
     <div class=\"posts-list\">
@@ -130,7 +191,7 @@ class __TwigTemplate_2654a39c8828c9ec7f195a0353cb9b3c extends Template
         </article>
         {% endfor %}
     </div>
-</section> #}
+</section> 
 {% endblock %} ", "index.html.twig", "/opt/app/templates/index.html.twig");
     }
 }

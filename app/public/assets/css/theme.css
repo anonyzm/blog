@@ -2,15 +2,19 @@ html {
     height: 100%
 }
 
+#top-wrapper .container {
+    padding: 2rem 0 0.6rem
+}
+
 #body-wrapper .container {
     padding: 2rem 0 2rem
 }
 
-.header-fixed #body-wrapper {
+.header-fixed #top-wrapper {
     padding-top: 4rem
 }
 
-.header-fixed .hero+#start>#body-wrapper {
+.header-fixed .hero+#start>#body-wrapper, .header-fixed .hero+#start>#top-wrapper {
     padding-top: 0
 }
 
@@ -163,7 +167,8 @@ h4,
 h5,
 h6 {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
+    margin-top: 1rem;
     color: #3a414e
 }
 
@@ -206,7 +211,8 @@ h6 {
 .title-center h1+h2,
 .title-h1h2 h1+h2 {
     font-weight: 700;
-    margin-bottom: 50px
+    /* margin-bottom: 50px */
+    margin-bottom: 30px;
 }
 
 a:focus {
