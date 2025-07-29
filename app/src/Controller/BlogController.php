@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Interfaces\BlogInterface;
+use App\Interfaces\PostInterface;
+use App\Interfaces\TranslationInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
@@ -10,27 +11,19 @@ use Twig\Environment;
 class BlogController
 {
     public function __construct(
-        private BlogInterface $blogService,
+        private PostInterface $post,
+        private TranslationInterface $translationService,
         private Environment $twig
     ) {}
 
     public function index(Request $request): Response
     {
         // Получаем посты через сервис
-        $posts = $this->blogService->getAllPosts();
+        $posts = $this->post->getAll();
         
         $content = $this->twig->render('index.html.twig', [
-            'title' => 'Главная страница блога',
-            //'posts' => $posts
-        ]);
-        
-        return new Response($content);
-    }
-    
-    public function typography(Request $request): Response
-    {
-        $content = $this->twig->render('typography.html.twig', [
-            'title' => 'Типографика'
+            'title' => 'Главная',
+            'posts' => $posts
         ]);
         
         return new Response($content);
@@ -39,9 +32,9 @@ class BlogController
     public function view(Request $request, string $slug): Response
     {
         // Получаем пост через сервис
-        $post = $this->blogService->getPostBySlug($slug);
+        $post = $this->post->fromSlug($slug);
         
-        if (!$post) {
+        if (!$post->exists()) {
             return new Response('Пост не найден', 404);
         }
         

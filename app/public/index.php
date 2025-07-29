@@ -11,6 +11,10 @@ use Symfony\Component\HttpKernel\Controller\ContainerControllerResolver;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use App\Kernel\Kernel;
 
+// Устанавливаем локаль
+// TODO: переделать на получение из запроса
+$GLOBALS['locale'] = 'ru_RU';
+
 // Создаем Kernel и загружаем контейнер
 $kernel = new Kernel('dev', true);
 $kernel->boot();

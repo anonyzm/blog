@@ -151,11 +151,28 @@ class ComposerStaticInit0f0139ee1385cfc9aa32849f6e3464fe
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'ParsedownExtra' => 
+            array (
+                0 => __DIR__ . '/..' . '/erusev/parsedown-extra',
+            ),
+            'Parsedown' => 
+            array (
+                0 => __DIR__ . '/..' . '/erusev/parsedown',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'App\\Controller\\BlogController' => __DIR__ . '/../..' . '/src/Controller/BlogController.php',
         'App\\Interfaces\\BlogInterface' => __DIR__ . '/../..' . '/src/Interfaces/BlogInterface.php',
+        'App\\Interfaces\\TranslationInterface' => __DIR__ . '/../..' . '/src/Interfaces/TranslationInterface.php',
         'App\\Kernel\\Kernel' => __DIR__ . '/../..' . '/src/Kernel/Kernel.php',
+        'App\\Models\\Post' => __DIR__ . '/../..' . '/src/Models/Post.php',
         'App\\Service\\BlogService' => __DIR__ . '/../..' . '/src/Service/BlogService.php',
+        'App\\Service\\TranslationService' => __DIR__ . '/../..' . '/src/Service/TranslationService.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
         'DateException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
@@ -167,6 +184,8 @@ class ComposerStaticInit0f0139ee1385cfc9aa32849f6e3464fe
         'DateObjectError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateObjectError.php',
         'DateRangeError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateRangeError.php',
         'Override' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/Override.php',
+        'Parsedown' => __DIR__ . '/..' . '/erusev/parsedown/Parsedown.php',
+        'ParsedownExtra' => __DIR__ . '/..' . '/erusev/parsedown-extra/ParsedownExtra.php',
         'Psr\\Container\\ContainerExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerExceptionInterface.php',
         'Psr\\Container\\ContainerInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerInterface.php',
         'Psr\\Container\\NotFoundExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/NotFoundExceptionInterface.php',
@@ -1271,6 +1290,7 @@ class ComposerStaticInit0f0139ee1385cfc9aa32849f6e3464fe
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit0f0139ee1385cfc9aa32849f6e3464fe::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit0f0139ee1385cfc9aa32849f6e3464fe::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit0f0139ee1385cfc9aa32849f6e3464fe::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit0f0139ee1385cfc9aa32849f6e3464fe::$classMap;
 
         }, null, ClassLoader::class);

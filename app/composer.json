@@ -12,7 +12,9 @@
         "symfony/yaml": "^6.0",
         "symfony/config": "^6.0",
         "twig/twig": "^3.0",
-        "symfony/twig-bridge": "^6.0"
+        "symfony/twig-bridge": "^6.0",
+        "erusev/parsedown": "^1.7",
+        "erusev/parsedown-extra": "~0.8"
     },
     "autoload": {
         "psr-4": {

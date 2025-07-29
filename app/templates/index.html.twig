@@ -17,15 +17,16 @@
     <div class="posts-list">
         {% for post in posts %}
         <article class="post-item fade-in">
-            <h3 class="post-title">
-                <a href="/blog/{{ post.slug }}">{{ post.title }}</a>
-            </h3>
+            <div class="post-header">
+                <h3>
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                </h3>
+            </div>
             <div class="post-excerpt">
                 {{ post.excerpt }}
             </div>
             <div class="post-meta">
                 <span class="post-date">{{ post.date }}</span>
-                <span class="post-author">Автор: {{ post.author }}</span>
             </div>
         </article>
         {% endfor %}

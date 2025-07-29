@@ -20,9 +20,17 @@ services:
     App\Interfaces\:
         resource: '../src/Interfaces/'
 
-    # Явно регистрируем BlogService как реализацию BlogInterface
-    App\Interfaces\BlogInterface:
-        alias: App\Service\BlogMarkdownService
+    # Явно регистрируем Post как реализацию PostInterface
+    App\Interfaces\PostInterface:
+        alias: App\Service\PostService
+
+     # Явно регистрируем TranslationService как реализацию TranslationInterface
+    App\Interfaces\TranslationInterface:
+        alias: App\Service\TranslationService
+
+    # Явно регистрируем MarkdownConverterService как реализацию ConverterInterface
+    App\Interfaces\ConverterInterface:
+        alias: App\Service\MarkdownConverterService
 
     # Регистрируем Twig как сервис
     Twig\Environment:
