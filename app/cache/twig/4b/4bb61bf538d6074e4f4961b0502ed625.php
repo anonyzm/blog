@@ -63,42 +63,42 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
 ";
         // line 18
         yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
-        // line 22
+        // line 23
         yield "
 </head>
 <body id=\"top\" class=\"";
-        // line 24
+        // line 25
         yield from $this->unwrap()->yieldBlock('body_classes', $context, $blocks);
         yield "\">
     <div id=\"page-wrapper\">
     ";
-        // line 26
+        // line 27
         yield from $this->unwrap()->yieldBlock('header', $context, $blocks);
-        // line 50
+        // line 51
         yield "
         <section id=\"start\">
         ";
-        // line 52
+        // line 53
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 62
+        // line 63
         yield "        </section>
 
     </div>
 
     ";
-        // line 66
+        // line 67
         yield from $this->unwrap()->yieldBlock('footer', $context, $blocks);
-        // line 71
+        // line 72
         yield "
     ";
-        // line 72
+        // line 73
         yield from $this->unwrap()->yieldBlock('mobile', $context, $blocks);
-        // line 84
+        // line 85
         yield "
 ";
-        // line 85
+        // line 86
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 89
+        // line 90
         yield "
 </body>
 </html>
@@ -143,50 +143,52 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
     {
         $macros = $this->macros;
         // line 19
-        yield "    <link rel=\"stylesheet\" href=\"/assets/css/base.css\">
-    <link rel=\"stylesheet\" href=\"/assets/css/markdown.css\">
+        yield "    ";
+        // line 20
+        yield "    <link rel=\"stylesheet\" href=\"/assets/css/markdown.css\">
+    <link rel=\"stylesheet\" href=\"/assets/css/theme.css\">
 ";
         yield from [];
     }
 
-    // line 24
+    // line 25
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_body_classes(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        yield "header-fixed header-animated header-dark header-transparent sticky-footer";
+        yield "title-center title-h1h2 header-fixed header-animated sticky-footer";
         yield from [];
     }
 
-    // line 26
+    // line 27
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_header(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 27
+        // line 28
         yield "        <section id=\"header\" class=\"section\">
             <section class=\"container grid-lg\">
                 <nav class=\"navbar\">
                     <section class=\"navbar-section logo\">
                         ";
-        // line 31
-        yield from $this->load("partials/logo.html.twig", 31)->unwrap()->yield($context);
         // line 32
+        yield from $this->load("partials/logo.html.twig", 32)->unwrap()->yield($context);
+        // line 33
         yield "                    </section>
                     <section class=\"navbar-section navbar-title\">
                         ";
-        // line 34
-        yield from $this->unwrap()->yieldBlock('title', $context, $blocks);
         // line 35
+        yield from $this->unwrap()->yieldBlock('title', $context, $blocks);
+        // line 36
         yield "                    </section>
                     <section class=\"navbar-section desktop-menu\">
                         ";
-        // line 37
-        yield from $this->load("partials/navigation.html.twig", 37)->unwrap()->yield($context);
+        // line 38
+        yield from $this->load("partials/navigation.html.twig", 38)->unwrap()->yield($context);
         yield "                      
                     </section>
                 </nav>
@@ -203,7 +205,7 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
         yield from [];
     }
 
-    // line 34
+    // line 35
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -214,18 +216,18 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
         yield from [];
     }
 
-    // line 52
+    // line 53
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_body(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 53
+        // line 54
         yield "            <section id=\"body-wrapper\" class=\"section\">
                 <section class=\"container grid-lg\">
                     ";
-        // line 58
+        // line 59
         yield "                    ";
         yield from $this->unwrap()->yieldBlock('content', $context, $blocks);
         yield "        
@@ -244,45 +246,45 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
         yield from [];
     }
 
-    // line 66
+    // line 67
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_footer(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 67
+        // line 68
         yield "        <section id=\"footer\" class=\"section bg-gray\">
             ";
-        // line 68
-        yield from $this->load("partials/footer.html.twig", 68)->unwrap()->yield($context);
         // line 69
+        yield from $this->load("partials/footer.html.twig", 69)->unwrap()->yield($context);
+        // line 70
         yield "        </section>
     ";
         yield from [];
     }
 
-    // line 72
+    // line 73
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_mobile(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 73
+        // line 74
         yield "    <div class=\"mobile-container\">
         <div class=\"overlay\" id=\"overlay\">
             <div class=\"mobile-logo\">
                 ";
-        // line 76
-        yield from $this->load("partials/logo.html.twig", 76)->unwrap()->yield($context);
         // line 77
+        yield from $this->load("partials/logo.html.twig", 77)->unwrap()->yield($context);
+        // line 78
         yield "            </div>
             <nav class=\"overlay-menu\">
                 ";
-        // line 79
-        yield from $this->load("partials/navigation.html.twig", 79)->unwrap()->yield(CoreExtension::merge($context, ["tree" => true]));
         // line 80
+        yield from $this->load("partials/navigation.html.twig", 80)->unwrap()->yield(CoreExtension::merge($context, ["tree" => true]));
+        // line 81
         yield "            </nav>
         </div>
     </div>
@@ -290,14 +292,14 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
         yield from [];
     }
 
-    // line 85
+    // line 86
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_javascripts(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 86
+        // line 87
         yield "    <script src=\"/system/assets/jquery/jquery-3.x.min.js\"></script>
     <script src=\"/system/assets/jquery/base.js\"></script>
 ";
@@ -325,7 +327,7 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  301 => 86,  294 => 85,  286 => 80,  284 => 79,  280 => 77,  278 => 76,  273 => 73,  266 => 72,  260 => 69,  258 => 68,  255 => 67,  248 => 66,  229 => 58,  225 => 53,  218 => 52,  207 => 34,  189 => 37,  185 => 35,  183 => 34,  179 => 32,  177 => 31,  171 => 27,  164 => 26,  153 => 24,  146 => 19,  139 => 18,  120 => 6,  117 => 5,  110 => 4,  102 => 89,  100 => 85,  97 => 84,  95 => 72,  92 => 71,  90 => 66,  84 => 62,  82 => 52,  78 => 50,  76 => 26,  71 => 24,  67 => 22,  65 => 18,  62 => 17,  60 => 4,  55 => 2,  52 => 1,);
+        return array (  303 => 87,  296 => 86,  288 => 81,  286 => 80,  282 => 78,  280 => 77,  275 => 74,  268 => 73,  262 => 70,  260 => 69,  257 => 68,  250 => 67,  231 => 59,  227 => 54,  220 => 53,  209 => 35,  191 => 38,  187 => 36,  185 => 35,  181 => 33,  179 => 32,  173 => 28,  166 => 27,  155 => 25,  148 => 20,  146 => 19,  139 => 18,  120 => 6,  117 => 5,  110 => 4,  102 => 90,  100 => 86,  97 => 85,  95 => 73,  92 => 72,  90 => 67,  84 => 63,  82 => 53,  78 => 51,  76 => 27,  71 => 25,  67 => 23,  65 => 18,  62 => 17,  60 => 4,  55 => 2,  52 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -348,12 +350,13 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
 {% endblock head %}
 
 {% block stylesheets %}
-    <link rel=\"stylesheet\" href=\"/assets/css/base.css\">
+    {# <link rel=\"stylesheet\" href=\"/assets/css/base.css\"> #}
     <link rel=\"stylesheet\" href=\"/assets/css/markdown.css\">
+    <link rel=\"stylesheet\" href=\"/assets/css/theme.css\">
 {% endblock %}
 
 </head>
-<body id=\"top\" class=\"{% block body_classes %}header-fixed header-animated header-dark header-transparent sticky-footer{% endblock %}\">
+<body id=\"top\" class=\"{% block body_classes %}title-center title-h1h2 header-fixed header-animated sticky-footer{% endblock %}\">
     <div id=\"page-wrapper\">
     {% block header %}
         <section id=\"header\" class=\"section\">

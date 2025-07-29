@@ -68,10 +68,9 @@ class __TwigTemplate_2654a39c8828c9ec7f195a0353cb9b3c extends Template
     {
         $macros = $this->macros;
         // line 6
-        yield "<div class=\"hero fade-in\">
-    <h1 class=\"hero-title\">Добро пожаловать в IT Solutions Blog</h1>
-    <p class=\"hero-subtitle\">Здесь вы найдете интересные статьи о технологиях, решениях и последних тенденциях в IT индустрии</p>
-</div>
+        yield "    <h1>Попрощайся</h1>
+    <h2>с плохими решениями</h2>
+    <p>Здесь вы найдете интересные статьи о технологиях, решениях и последних тенденциях в IT индустрии</p>
 
 ";
         yield from [];
@@ -108,10 +107,9 @@ class __TwigTemplate_2654a39c8828c9ec7f195a0353cb9b3c extends Template
 {% block title %}{{ title }} - IT Solutions Blog{% endblock %}
 
 {% block content %}
-<div class=\"hero fade-in\">
-    <h1 class=\"hero-title\">Добро пожаловать в IT Solutions Blog</h1>
-    <p class=\"hero-subtitle\">Здесь вы найдете интересные статьи о технологиях, решениях и последних тенденциях в IT индустрии</p>
-</div>
+    <h1>Попрощайся</h1>
+    <h2>с плохими решениями</h2>
+    <p>Здесь вы найдете интересные статьи о технологиях, решениях и последних тенденциях в IT индустрии</p>
 
 {# <section class=\"posts-section slide-up\">
     <h2 class=\"section-title\">Последние публикации</h2>
