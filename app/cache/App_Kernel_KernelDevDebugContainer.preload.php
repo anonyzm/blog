@@ -10,14 +10,18 @@ if (in_array(PHP_SAPI, ['cli', 'phpdbg', 'embed'], true)) {
 }
 
 require dirname(__DIR__, 1).'/vendor/autoload.php';
-(require __DIR__.'/App_Kernel_KernelDevDebugContainer.php')->set(\ContainerEWkytkt\App_Kernel_KernelDevDebugContainer::class, null);
-require __DIR__.'/ContainerEWkytkt/getBlogControllerService.php';
+(require __DIR__.'/App_Kernel_KernelDevDebugContainer.php')->set(\ContainerZxhTTUB\App_Kernel_KernelDevDebugContainer::class, null);
+require __DIR__.'/ContainerZxhTTUB/getParsedownExtraService.php';
+require __DIR__.'/ContainerZxhTTUB/getBlogControllerService.php';
 
 $classes = [];
 $classes[] = 'App\Controller\BlogController';
-$classes[] = 'App\Service\BlogMarkdownService';
+$classes[] = 'App\Domain\MarkdownPost';
+$classes[] = 'App\Service\MarkdownConverterService';
+$classes[] = 'App\Service\TranslationService';
 $classes[] = 'Twig\Environment';
 $classes[] = 'Twig\Loader\FilesystemLoader';
+$classes[] = 'ParsedownExtra';
 $classes[] = 'Symfony\Component\DependencyInjection\ContainerInterface';
 
 $preloaded = Preloader::preload($classes);

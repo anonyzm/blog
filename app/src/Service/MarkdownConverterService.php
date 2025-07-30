@@ -2,13 +2,13 @@
 
 namespace App\Service;
 
-use App\Interfaces\ConverterInterface;
+use App\Interface\ConverterInterface;
 use ParsedownExtra;
 
 class MarkdownConverterService implements ConverterInterface
 {
     public function __construct(
-        private ParsedownExtra $parsedown,
+        private \ParsedownExtra $parsedown,
     ) {}
 
     public function convert(string $text): string

@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerEWkytkt;
+namespace ContainerYx5wb8O;
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -19,17 +19,22 @@ class getBlogControllerService extends App_Kernel_KernelDevDebugContainer
     public static function do($container, $lazyLoad = true)
     {
         include_once \dirname(__DIR__, 2).'/src/Controller/BlogController.php';
-        include_once \dirname(__DIR__, 2).'/src/Interfaces/BlogInterface.php';
-        include_once \dirname(__DIR__, 2).'/src/Service/BlogMarkdownService.php';
+        include_once \dirname(__DIR__, 2).'/src/Interface/PostInterface.php';
+        include_once \dirname(__DIR__, 2).'/src/Domain/MarkdownPost.php';
+        include_once \dirname(__DIR__, 2).'/src/Interface/ConverterInterface.php';
+        include_once \dirname(__DIR__, 2).'/src/Service/MarkdownConverterService.php';
+        include_once \dirname(__DIR__, 2).'/src/Service/TranslationService.php';
         include_once \dirname(__DIR__, 2).'/vendor/twig/twig/src/Environment.php';
         include_once \dirname(__DIR__, 2).'/vendor/twig/twig/src/Loader/LoaderInterface.php';
         include_once \dirname(__DIR__, 2).'/vendor/twig/twig/src/Loader/FilesystemLoader.php';
+        include_once \dirname(__DIR__, 2).'/vendor/erusev/parsedown/Parsedown.php';
+        include_once \dirname(__DIR__, 2).'/vendor/erusev/parsedown-extra/ParsedownExtra.php';
 
         $a = new \Twig\Environment(new \Twig\Loader\FilesystemLoader([(\dirname(__DIR__, 2).'/templates')]));
         $a->setCache(($container->targetDir.''.'/twig'));
         $a->enableDebug(true);
         $a->enableAutoReload(true);
 
-        return $container->services['App\\Controller\\BlogController'] = new \App\Controller\BlogController(new \App\Service\BlogMarkdownService(), $a);
+        return $container->services['App\\Controller\\BlogController'] = new \App\Controller\BlogController(new \App\Domain\MarkdownPost(new \App\Service\MarkdownConverterService(($container->services['ParsedownExtra'] ??= new \ParsedownExtra()))), new \App\Service\TranslationService(), $a);
     }
 }

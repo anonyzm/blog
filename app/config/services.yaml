@@ -12,25 +12,30 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-    # Регистрируем все сервисы
     App\Service\:
         resource: '../src/Service/'
 
-    # Регистрируем все интерфейсы
-    App\Interfaces\:
-        resource: '../src/Interfaces/'
+    App\Domain\:
+        resource: '../src/Domain/'
+
+    App\Interface\:
+        resource: '../src/Interface/'
 
     # Явно регистрируем Post как реализацию PostInterface
-    App\Interfaces\PostInterface:
-        alias: App\Service\PostService
+    App\Interface\PostInterface:
+        alias: App\Domain\MarkdownPost
 
      # Явно регистрируем TranslationService как реализацию TranslationInterface
-    App\Interfaces\TranslationInterface:
+    App\Interface\TranslationInterface:
         alias: App\Service\TranslationService
 
     # Явно регистрируем MarkdownConverterService как реализацию ConverterInterface
-    App\Interfaces\ConverterInterface:
+    App\Interface\ConverterInterface:
         alias: App\Service\MarkdownConverterService
+
+    ParsedownExtra:
+        class: ParsedownExtra
+        public: true
 
     # Регистрируем Twig как сервис
     Twig\Environment:

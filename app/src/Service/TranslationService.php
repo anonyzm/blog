@@ -2,15 +2,19 @@
 
 namespace App\Service;
 
-class TranslationService {
+use App\Interface\TranslationInterface;
+
+class TranslationService implements TranslationInterface {
     private string $language = 'ru';
 
     private array $translations = [
         'ru_RU' => [
             'read_more' => 'Читать далее',
+            'main' => 'Главная',
         ],
         'en_US' => [   
             'read_more' => 'Read more',    
+            'main' => 'Main',
         ]
     ];
 

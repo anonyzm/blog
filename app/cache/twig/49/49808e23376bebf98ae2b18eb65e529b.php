@@ -96,28 +96,26 @@ class __TwigTemplate_2654a39c8828c9ec7f195a0353cb9b3c extends Template
         foreach ($context['_seq'] as $context["_key"] => $context["post"]) {
             // line 19
             yield "        <article class=\"post-item fade-in\">
-            <h3 class=\"post-title\">
-                <a href=\"/blog/";
-            // line 21
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "slug", [], "any", false, false, false, 21), "html", null, true);
+            <div class=\"post-header\">
+                <h3>
+                    <a href=\"";
+            // line 22
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "url", [], "any", false, false, false, 22), "html", null, true);
             yield "\">";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "title", [], "any", false, false, false, 21), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "title", [], "any", false, false, false, 22), "html", null, true);
             yield "</a>
-            </h3>
+                </h3>
+            </div>
             <div class=\"post-excerpt\">
                 ";
-            // line 24
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "excerpt", [], "any", false, false, false, 24), "html", null, true);
+            // line 26
+            yield CoreExtension::getAttribute($this->env, $this->source, $context["post"], "excerpt", [], "any", false, false, false, 26);
             yield "
             </div>
             <div class=\"post-meta\">
                 <span class=\"post-date\">";
-            // line 27
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "date", [], "any", false, false, false, 27), "html", null, true);
-            yield "</span>
-                <span class=\"post-author\">Автор: ";
-            // line 28
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "author", [], "any", false, false, false, 28), "html", null, true);
+            // line 29
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "date", [], "any", false, false, false, 29), "html", null, true);
             yield "</span>
             </div>
         </article>
@@ -126,7 +124,7 @@ class __TwigTemplate_2654a39c8828c9ec7f195a0353cb9b3c extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['post'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 32
+        // line 33
         yield "    </div>
 </section> 
 ";
@@ -154,7 +152,7 @@ class __TwigTemplate_2654a39c8828c9ec7f195a0353cb9b3c extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  130 => 32,  120 => 28,  116 => 27,  110 => 24,  102 => 21,  98 => 19,  94 => 18,  88 => 14,  81 => 13,  71 => 6,  64 => 5,  53 => 3,  42 => 1,);
+        return array (  128 => 33,  118 => 29,  112 => 26,  103 => 22,  98 => 19,  94 => 18,  88 => 14,  81 => 13,  71 => 6,  64 => 5,  53 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -178,15 +176,16 @@ class __TwigTemplate_2654a39c8828c9ec7f195a0353cb9b3c extends Template
     <div class=\"posts-list\">
         {% for post in posts %}
         <article class=\"post-item fade-in\">
-            <h3 class=\"post-title\">
-                <a href=\"/blog/{{ post.slug }}\">{{ post.title }}</a>
-            </h3>
+            <div class=\"post-header\">
+                <h3>
+                    <a href=\"{{ post.url }}\">{{ post.title }}</a>
+                </h3>
+            </div>
             <div class=\"post-excerpt\">
-                {{ post.excerpt }}
+                {{ post.excerpt | raw}}
             </div>
             <div class=\"post-meta\">
                 <span class=\"post-date\">{{ post.date }}</span>
-                <span class=\"post-author\">Автор: {{ post.author }}</span>
             </div>
         </article>
         {% endfor %}

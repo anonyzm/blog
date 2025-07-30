@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerAdo8e8F;
+namespace ContainerYx5wb8O;
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -27,6 +27,7 @@ class App_Kernel_KernelDevDebugContainer extends Container
         $this->services = $this->privates = [];
         $this->fileMap = [
             'App\\Controller\\BlogController' => 'getBlogControllerService',
+            'ParsedownExtra' => 'getParsedownExtraService',
         ];
 
         $this->aliases = [];

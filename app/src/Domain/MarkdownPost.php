@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Service;
+namespace App\Domain;
 
-use App\Interfaces\PostInterface;
-use App\Interfaces\ConverterInterface;
+use App\Interface\PostInterface;
+use App\Interface\ConverterInterface;
 
-class PostService implements PostInterface
+class MarkdownPost implements PostInterface
 {
     private string $title;
     private string $url;
@@ -64,6 +64,7 @@ class PostService implements PostInterface
     {
         $postDirs = scandir($this->basePath);
         $postDirs = array_diff($postDirs, array('.', '..'));
+        $postDirs = array_reverse($postDirs);
         $posts = [];
         foreach ($postDirs as $item) {
             $posts[] = $this->fromDirectory($item)->toArray();
@@ -91,7 +92,7 @@ class PostService implements PostInterface
         $date = $this->getPostDate($directory);
         $content = $this->getPostContent($directory);
         $title = $this->getPostTitle($directory);
-        $image = $this->getPostImage($directory);        
+        $image = $this->getPostImageUrl($directory);        
         $excerpt = $this->getPostExcerpt($content);
         
         $this->title = $title;
@@ -101,18 +102,12 @@ class PostService implements PostInterface
         $this->content = $content;
         $this->date = $date;
 
-        return $this->toArray();
+        return $this;
     }
 
-    private function getPostSlug(string $directory): string 
+    private function getPostUrl(string $directory): string 
     {
-        $chunks = explode('-', $directory);
-        if (count($chunks) > 3) {
-            unset($chunks[0]);
-            unset($chunks[1]);
-            unset($chunks[2]);
-        }
-        return implode('-', $chunks);
+        return $this->baseUrl . $directory;
     }
 
     private function getPostImageUrl(string $directory): string|bool
@@ -154,7 +149,7 @@ class PostService implements PostInterface
                     break;
                 }
             }
-            $content = implode(c, $content);
+            $content = implode(PHP_EOL, $content);
         }
         return $content;
     }

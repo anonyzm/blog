@@ -167,11 +167,12 @@ class ComposerStaticInit0f0139ee1385cfc9aa32849f6e3464fe
 
     public static $classMap = array (
         'App\\Controller\\BlogController' => __DIR__ . '/../..' . '/src/Controller/BlogController.php',
-        'App\\Interfaces\\BlogInterface' => __DIR__ . '/../..' . '/src/Interfaces/BlogInterface.php',
+        'App\\Interfaces\\ConverterInterface' => __DIR__ . '/../..' . '/src/Interfaces/ConverterInterface.php',
+        'App\\Interfaces\\PostInterface' => __DIR__ . '/../..' . '/src/Interfaces/PostInterface.php',
         'App\\Interfaces\\TranslationInterface' => __DIR__ . '/../..' . '/src/Interfaces/TranslationInterface.php',
         'App\\Kernel\\Kernel' => __DIR__ . '/../..' . '/src/Kernel/Kernel.php',
-        'App\\Models\\Post' => __DIR__ . '/../..' . '/src/Models/Post.php',
-        'App\\Service\\BlogService' => __DIR__ . '/../..' . '/src/Service/BlogService.php',
+        'App\\Service\\MarkdownConverterService' => __DIR__ . '/../..' . '/src/Service/MarkdownConverterService.php',
+        'App\\Service\\PostService' => __DIR__ . '/../..' . '/src/Service/PostService.php',
         'App\\Service\\TranslationService' => __DIR__ . '/../..' . '/src/Service/TranslationService.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',

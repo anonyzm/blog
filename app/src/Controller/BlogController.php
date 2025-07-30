@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Interfaces\PostInterface;
-use App\Interfaces\TranslationInterface;
+use App\Interface\PostInterface;
+use App\Interface\TranslationInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
@@ -22,7 +22,8 @@ class BlogController
         $posts = $this->post->getAll();
         
         $content = $this->twig->render('index.html.twig', [
-            'title' => 'Главная',
+            'title' => $this->translationService->translate('main'),
+            'read_more' => $this->translationService->translate('read_more'),
             'posts' => $posts
         ]);
         

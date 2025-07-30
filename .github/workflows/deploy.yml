@@ -21,6 +21,6 @@ jobs:
       - name: Deploy to server
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-            cd /opt/grav/app && git pull
-            cd /opt/grav && docker compose stop && docker compose up -d
+            cd /opt/blog && git pull
+            cd /opt/blog && docker compose up -d --force-recreate
           EOF
