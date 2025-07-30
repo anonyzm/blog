@@ -20,7 +20,7 @@ class BlogController
     {
         // Получаем посты через сервис
         $posts = $this->post->getAll();
-        
+
         $content = $this->twig->render('index.html.twig', [
             'title' => $this->translationService->translate('main'),
             'read_more' => $this->translationService->translate('read_more'),

@@ -10,9 +10,9 @@ if (in_array(PHP_SAPI, ['cli', 'phpdbg', 'embed'], true)) {
 }
 
 require dirname(__DIR__, 1).'/vendor/autoload.php';
-(require __DIR__.'/App_Kernel_KernelDevDebugContainer.php')->set(\ContainerZxhTTUB\App_Kernel_KernelDevDebugContainer::class, null);
-require __DIR__.'/ContainerZxhTTUB/getParsedownExtraService.php';
-require __DIR__.'/ContainerZxhTTUB/getBlogControllerService.php';
+(require __DIR__.'/App_Kernel_KernelDevDebugContainer.php')->set(\ContainerMsO4VjT\App_Kernel_KernelDevDebugContainer::class, null);
+require __DIR__.'/ContainerMsO4VjT/getParsedownExtraService.php';
+require __DIR__.'/ContainerMsO4VjT/getBlogControllerService.php';
 
 $classes = [];
 $classes[] = 'App\Controller\BlogController';

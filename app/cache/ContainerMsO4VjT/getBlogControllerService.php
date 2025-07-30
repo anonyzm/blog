@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerYx5wb8O;
+namespace ContainerMsO4VjT;
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -20,9 +20,11 @@ class getBlogControllerService extends App_Kernel_KernelDevDebugContainer
     {
         include_once \dirname(__DIR__, 2).'/src/Controller/BlogController.php';
         include_once \dirname(__DIR__, 2).'/src/Interface/PostInterface.php';
+        include_once \dirname(__DIR__, 2).'/src/Trait/CrlfTrait.php';
         include_once \dirname(__DIR__, 2).'/src/Domain/MarkdownPost.php';
         include_once \dirname(__DIR__, 2).'/src/Interface/ConverterInterface.php';
         include_once \dirname(__DIR__, 2).'/src/Service/MarkdownConverterService.php';
+        include_once \dirname(__DIR__, 2).'/src/Interface/TranslationInterface.php';
         include_once \dirname(__DIR__, 2).'/src/Service/TranslationService.php';
         include_once \dirname(__DIR__, 2).'/vendor/twig/twig/src/Environment.php';
         include_once \dirname(__DIR__, 2).'/vendor/twig/twig/src/Loader/LoaderInterface.php';

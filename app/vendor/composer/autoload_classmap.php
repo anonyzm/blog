@@ -7,12 +7,12 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Controller\\BlogController' => $baseDir . '/src/Controller/BlogController.php',
-    'App\\Interfaces\\ConverterInterface' => $baseDir . '/src/Interfaces/ConverterInterface.php',
-    'App\\Interfaces\\PostInterface' => $baseDir . '/src/Interfaces/PostInterface.php',
-    'App\\Interfaces\\TranslationInterface' => $baseDir . '/src/Interfaces/TranslationInterface.php',
+    'App\\Domain\\MarkdownPost' => $baseDir . '/src/Domain/MarkdownPost.php',
+    'App\\Interface\\ConverterInterface' => $baseDir . '/src/Interface/ConverterInterface.php',
+    'App\\Interface\\PostInterface' => $baseDir . '/src/Interface/PostInterface.php',
+    'App\\Interface\\TranslationInterface' => $baseDir . '/src/Interface/TranslationInterface.php',
     'App\\Kernel\\Kernel' => $baseDir . '/src/Kernel/Kernel.php',
     'App\\Service\\MarkdownConverterService' => $baseDir . '/src/Service/MarkdownConverterService.php',
-    'App\\Service\\PostService' => $baseDir . '/src/Service/PostService.php',
     'App\\Service\\TranslationService' => $baseDir . '/src/Service/TranslationService.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'DateError' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateError.php',

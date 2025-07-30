@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/assets/css/notices.css">
     <link rel="stylesheet" href="/assets/css/awesome.css">
     <link rel="stylesheet" href="/assets/css/custom.css">
+    <link rel="stylesheet" href="/assets/css/hljs.min.css">
 {% endblock %}
 
 </head>
@@ -91,6 +92,10 @@
 {% block javascripts %}
     <script src="/assets/js/jquery-3.x.min.js"></script>
     <script src="/assets/js/tree-menu.js"></script>
+    <script src="/assets/js/hljs/highlight.min.js"></script>
+    <script src="/assets/js/hljs/languages/go.min.js"></script>
+    <script src="/assets/js/hljs/languages/php.min.js"></script>
+    <script>hljs.highlightAll();</script>
 {% endblock %}
 
 </body>

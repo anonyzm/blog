@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerYx5wb8O;
+namespace ContainerMsO4VjT;
 
 return [
     'App\\Domain\\MarkdownPost' => true,

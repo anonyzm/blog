@@ -4,15 +4,20 @@ namespace App\Domain;
 
 use App\Interface\PostInterface;
 use App\Interface\ConverterInterface;
+use App\Trait\CrlfTrait;
 
 class MarkdownPost implements PostInterface
 {
+    use CrlfTrait;
+
     private string $title;
     private string $url;
     private string|bool $image;
     private string $excerpt;
     private string $content;
     private string $date;
+    private string $quote;
+    private bool $shortened = false;
 
     private string $basePath = '/opt/app/public/posts/';
     private string $imgBaseUrl = '/posts/';
@@ -46,6 +51,11 @@ class MarkdownPost implements PostInterface
     public function exists(): bool
     {
         return !empty($this->url);
+    }
+
+    public function isShortened(): bool
+    {
+        return $this->shortened;
     }
     
     public function fromSlug(string $slug): array
@@ -83,6 +93,8 @@ class MarkdownPost implements PostInterface
             'content' => $this->converter->convert($this->content),
             'date' => $this->date,
             'image' => $this->image,
+            'quote' => $this->converter->convert($this->quote),
+            'shortened' => $this->shortened,
         ];
     }
 
@@ -92,10 +104,12 @@ class MarkdownPost implements PostInterface
         $date = $this->getPostDate($directory);
         $content = $this->getPostContent($directory);
         $title = $this->getPostTitle($directory);
+        $quote = $this->getPostQuote($content);
         $image = $this->getPostImageUrl($directory);        
         $excerpt = $this->getPostExcerpt($content);
         
         $this->title = $title;
+        $this->quote = $quote;
         $this->url = $url;
         $this->excerpt = $excerpt;
         $this->image = $image;
@@ -112,17 +126,18 @@ class MarkdownPost implements PostInterface
 
     private function getPostImageUrl(string $directory): string|bool
     { 
-        $imgUrl = $this->baseUrl . $directory . '/';
+        $imgPath = $this->basePath . $directory . '/';
+        $imgUrl = $this->imgBaseUrl . $directory . '/';
         $exists = false;
         foreach ($this->imgExtensions as $extension) {
-            $img = $imgUrl . 'image.' . $extension;
-            if (file_exists($img)) {
+            $img = 'image.' . $extension;
+            if (file_exists($imgPath . $img)) {
+                $imgUrl = $imgUrl . $img;
                 $exists = true;
                 break;
             }
         }
-        return $exists ? $img : false;
-        
+        return $exists ? $imgUrl : false;        
     }
     
     private function getPostDate(string $directory): string 
@@ -139,17 +154,18 @@ class MarkdownPost implements PostInterface
         $file = $this->basePath . $directory . '/' . $this->language . '.md';
         $content = '';
         if (file_exists($file)) {
-            $content = file($file);
-            foreach ($content as $key => $line) {
+            $content = file_get_contents($file);
+            $lines = explode($this->crlf, $content);
+            foreach ($lines as $key => $line) {
                 if (str_starts_with($line, '# ')) {
-                    unset($content[$key]);
-                    if (isset($content[$key + 1]) && empty($content[$key + 1])) {
-                        unset($content[$key + 1]);
+                    unset($lines[$key]);
+                    if (isset($lines[$key + 1]) && empty($lines[$key + 1])) {
+                        unset($lines[$key + 1]);
                     }
                     break;
                 }
             }
-            $content = implode(PHP_EOL, $content);
+            $content = implode($this->crlf, $lines);
         }
         return $content;
     }
@@ -172,19 +188,18 @@ class MarkdownPost implements PostInterface
 
     private function getPostExcerpt(string $content): string 
     {
-        $lines = explode(PHP_EOL, $content);
+        $lines = explode($this->crlf, $content);
         $excerpt = '';
         $excerptText = '';
         $quoteStarted = false;
         $quotePassed = false;
         $textLeft = $this->excerptLength;
         foreach ($lines as $key => $line) {
-            if (!$quoteStarted && str_starts_with($line, '> ')) {
+            if (!$quoteStarted && str_starts_with($line, '>')) {
                 $quoteStarted = true;
-                $excerpt .= $line . PHP_EOL;
                 continue;
             }
-            if ($quoteStarted && !str_starts_with($line, '> ')) { 
+            if ($quoteStarted && !str_starts_with($line, '>')) { 
                 $quotePassed = true;
             }
             if ($quotePassed) {
@@ -192,14 +207,31 @@ class MarkdownPost implements PostInterface
                 if ($textLeft <= 0) {
                     break;
                 }
-                $excerptText .= $line . PHP_EOL;
+                $excerptText .= $line . $this->crlf;
             }
         }
         $excerptText .= mb_substr($line, 0, $this->excerptLength);
         if ($textLeft < 0) {
             $excerptText .= '...';
+            $this->shortened = true;
         }
         return $excerpt . $excerptText;
     }
 
+    private function getPostQuote(string $content): string 
+    {
+        $lines = explode($this->crlf, $content);
+        $quote = '';
+        $quoteStarted = false;
+        foreach ($lines as $key => $line) {
+            if (str_starts_with($line, '>')) {
+                $quoteStarted = true;
+                $quote .= $line . $this->crlf;
+            }
+            else if ($quoteStarted && !str_starts_with($line, '>')) { 
+                break;
+            }
+        }
+        return $quote;
+    }
 }

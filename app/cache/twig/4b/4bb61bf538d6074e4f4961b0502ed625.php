@@ -64,42 +64,42 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
 ";
         // line 18
         yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
-        // line 25
+        // line 26
         yield "
 </head>
 <body id=\"top\" class=\"";
-        // line 27
+        // line 28
         yield from $this->unwrap()->yieldBlock('body_classes', $context, $blocks);
         yield "\">
     <div id=\"page-wrapper\">
     ";
-        // line 29
+        // line 30
         yield from $this->unwrap()->yieldBlock('header', $context, $blocks);
-        // line 53
+        // line 54
         yield "
         <section id=\"start\">
         ";
-        // line 55
+        // line 56
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 68
+        // line 69
         yield "        </section>
 
     </div>
 
     ";
-        // line 72
+        // line 73
         yield from $this->unwrap()->yieldBlock('footer', $context, $blocks);
-        // line 77
+        // line 78
         yield "
     ";
-        // line 78
+        // line 79
         yield from $this->unwrap()->yieldBlock('mobile', $context, $blocks);
-        // line 90
+        // line 91
         yield "
 ";
-        // line 91
+        // line 92
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 95
+        // line 100
         yield "
 </body>
 </html>
@@ -149,11 +149,12 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
     <link rel=\"stylesheet\" href=\"/assets/css/notices.css\">
     <link rel=\"stylesheet\" href=\"/assets/css/awesome.css\">
     <link rel=\"stylesheet\" href=\"/assets/css/custom.css\">
+    <link rel=\"stylesheet\" href=\"/assets/css/hljs.min.css\">
 ";
         yield from [];
     }
 
-    // line 27
+    // line 28
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -164,33 +165,33 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
         yield from [];
     }
 
-    // line 29
+    // line 30
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_header(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 30
+        // line 31
         yield "        <section id=\"header\" class=\"section\">
             <section class=\"container grid-lg\">
                 <nav class=\"navbar\">
                     <section class=\"navbar-section logo\">
                         ";
-        // line 34
-        yield from $this->load("partials/logo.html.twig", 34)->unwrap()->yield($context);
         // line 35
+        yield from $this->load("partials/logo.html.twig", 35)->unwrap()->yield($context);
+        // line 36
         yield "                    </section>
                     <section class=\"navbar-section navbar-title\">
                         ";
-        // line 37
-        yield from $this->unwrap()->yieldBlock('title', $context, $blocks);
         // line 38
+        yield from $this->unwrap()->yieldBlock('title', $context, $blocks);
+        // line 39
         yield "                    </section>
                     <section class=\"navbar-section desktop-menu\">
                         ";
-        // line 40
-        yield from $this->load("partials/navigation.html.twig", 40)->unwrap()->yield($context);
+        // line 41
+        yield from $this->load("partials/navigation.html.twig", 41)->unwrap()->yield($context);
         yield "                      
                     </section>
                 </nav>
@@ -207,7 +208,7 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
         yield from [];
     }
 
-    // line 37
+    // line 38
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -218,24 +219,24 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
         yield from [];
     }
 
-    // line 55
+    // line 56
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_body(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 56
+        // line 57
         yield "            <section id=\"top-wrapper\" class=\"section\">
                 ";
-        // line 57
+        // line 58
         yield from $this->unwrap()->yieldBlock('content_header', $context, $blocks);
         yield "              
             </section>
             <section id=\"body-wrapper\" class=\"section\">
                 <section class=\"container grid-lg\">
                     ";
-        // line 64
+        // line 65
         yield "                    ";
         yield from $this->unwrap()->yieldBlock('content', $context, $blocks);
         yield "        
@@ -245,7 +246,7 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
         yield from [];
     }
 
-    // line 57
+    // line 58
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -255,7 +256,7 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
         yield from [];
     }
 
-    // line 64
+    // line 65
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -265,45 +266,45 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
         yield from [];
     }
 
-    // line 72
+    // line 73
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_footer(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 73
+        // line 74
         yield "        <section id=\"footer\" class=\"section bg-gray\">
             ";
-        // line 74
-        yield from $this->load("partials/footer.html.twig", 74)->unwrap()->yield($context);
         // line 75
+        yield from $this->load("partials/footer.html.twig", 75)->unwrap()->yield($context);
+        // line 76
         yield "        </section>
     ";
         yield from [];
     }
 
-    // line 78
+    // line 79
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_mobile(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 79
+        // line 80
         yield "    <div class=\"mobile-container\">
         <div class=\"overlay\" id=\"overlay\">
             <div class=\"mobile-logo\">
                 ";
-        // line 82
-        yield from $this->load("partials/logo.html.twig", 82)->unwrap()->yield($context);
         // line 83
+        yield from $this->load("partials/logo.html.twig", 83)->unwrap()->yield($context);
+        // line 84
         yield "            </div>
             <nav class=\"overlay-menu\">
                 ";
-        // line 85
-        yield from $this->load("partials/navigation.html.twig", 85)->unwrap()->yield(CoreExtension::merge($context, ["tree" => true]));
         // line 86
+        yield from $this->load("partials/navigation.html.twig", 86)->unwrap()->yield(CoreExtension::merge($context, ["tree" => true]));
+        // line 87
         yield "            </nav>
         </div>
     </div>
@@ -311,16 +312,20 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
         yield from [];
     }
 
-    // line 91
+    // line 92
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_javascripts(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 92
+        // line 93
         yield "    <script src=\"/assets/js/jquery-3.x.min.js\"></script>
     <script src=\"/assets/js/tree-menu.js\"></script>
+    <script src=\"/assets/js/hljs/highlight.min.js\"></script>
+    <script src=\"/assets/js/hljs/languages/go.min.js\"></script>
+    <script src=\"/assets/js/hljs/languages/php.min.js\"></script>
+    <script>hljs.highlightAll();</script>
 ";
         yield from [];
     }
@@ -346,7 +351,7 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  322 => 92,  315 => 91,  307 => 86,  305 => 85,  301 => 83,  299 => 82,  294 => 79,  287 => 78,  281 => 75,  279 => 74,  276 => 73,  269 => 72,  259 => 64,  249 => 57,  239 => 64,  232 => 57,  229 => 56,  222 => 55,  211 => 37,  193 => 40,  189 => 38,  187 => 37,  183 => 35,  181 => 34,  175 => 30,  168 => 29,  157 => 27,  147 => 19,  140 => 18,  121 => 6,  118 => 5,  111 => 4,  103 => 95,  101 => 91,  98 => 90,  96 => 78,  93 => 77,  91 => 72,  85 => 68,  83 => 55,  79 => 53,  77 => 29,  72 => 27,  68 => 25,  66 => 18,  63 => 17,  61 => 4,  56 => 2,  53 => 1,);
+        return array (  323 => 93,  316 => 92,  308 => 87,  306 => 86,  302 => 84,  300 => 83,  295 => 80,  288 => 79,  282 => 76,  280 => 75,  277 => 74,  270 => 73,  260 => 65,  250 => 58,  240 => 65,  233 => 58,  230 => 57,  223 => 56,  212 => 38,  194 => 41,  190 => 39,  188 => 38,  184 => 36,  182 => 35,  176 => 31,  169 => 30,  158 => 28,  147 => 19,  140 => 18,  121 => 6,  118 => 5,  111 => 4,  103 => 100,  101 => 92,  98 => 91,  96 => 79,  93 => 78,  91 => 73,  85 => 69,  83 => 56,  79 => 54,  77 => 30,  72 => 28,  68 => 26,  66 => 18,  63 => 17,  61 => 4,  56 => 2,  53 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -374,6 +379,7 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
     <link rel=\"stylesheet\" href=\"/assets/css/notices.css\">
     <link rel=\"stylesheet\" href=\"/assets/css/awesome.css\">
     <link rel=\"stylesheet\" href=\"/assets/css/custom.css\">
+    <link rel=\"stylesheet\" href=\"/assets/css/hljs.min.css\">
 {% endblock %}
 
 </head>
@@ -444,6 +450,10 @@ class __TwigTemplate_5c33e19b1e4d6a2be60e66d6b3f53834 extends Template
 {% block javascripts %}
     <script src=\"/assets/js/jquery-3.x.min.js\"></script>
     <script src=\"/assets/js/tree-menu.js\"></script>
+    <script src=\"/assets/js/hljs/highlight.min.js\"></script>
+    <script src=\"/assets/js/hljs/languages/go.min.js\"></script>
+    <script src=\"/assets/js/hljs/languages/php.min.js\"></script>
+    <script>hljs.highlightAll();</script>
 {% endblock %}
 
 </body>

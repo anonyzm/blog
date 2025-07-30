@@ -6,27 +6,50 @@
 <section class="container grid-lg">
     <h1>Попрощайся</h1>
     <h2>с плохими решениями</h2>
-    <p>Друг, если ты читаешь это, значит ты уже на полпути к тому, чтобы стать хорошим разработчиком. Я не знаю, как ты попал сюда, но я рад, что ты здесь <i class="fa fa-heart-o pulse"></i></p>
+    <p>Друг, если ты читаешь это, значит ты уже на полпути к тому, чтобы стать хорошим разработчиком. Я рад, что ты здесь <i class="fa fa-heart-o pulse"></i></p>
 </section>
 {% endblock %}
 
 {% block content %}
 <section class="posts-section">
-    <h2 class="section-title">Последние публикации</h2>
-    
+    {# <h2 class="section-title">Последние публикации</h2> #}    
     <div class="posts-list">
         {% for post in posts %}
         <article class="post-item fade-in">
             <div class="post-header">
                 <h3>
-                    <a href="{{ post.url }}">{{ post.title }}</a>
+                    <a href="{{ post.url }}">#&nbsp;{{ post.title }}</a>
                 </h3>
             </div>
-            <div class="post-excerpt">
-                {{ post.excerpt | raw}}
+            
+            <div class="post-content-wrapper">
+                {% if post.quote %}
+                <div class="post-quote-section">
+                    {% if post.image %}
+                    <div class="post-image">
+                        <img src="{{ post.image }}" alt="{{ post.title }}" class="post-thumbnail">
+                    </div>
+                    {% endif %}
+                    <div class="post-quote">
+                        {{ post.quote | raw }}
+                    </div>
+                </div>
+                {% elseif post.image %}
+                <div class="post-image">
+                    <img src="{{ post.image }}" alt="{{ post.title }}" class="post-thumbnail">
+                </div>
+                {% endif %}
+                
+                <div class="post-excerpt">
+                    {{ post.excerpt | raw }}
+                    {% if post.shortened %}
+                    <a href="{{ post.url }}" class="read-more">{{ read_more }}</a>
+                    {% endif %}
+                </div>
             </div>
+            
             <div class="post-meta">
-                <span class="post-date">{{ post.date }}</span>
+                <span class="post-date"><i class="fa fa-calendar"></i>&nbsp;{{ post.date | date('d.m.Y') }}</span>
             </div>
         </article>
         {% endfor %}
