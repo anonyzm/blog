@@ -6,7 +6,7 @@
     border-bottom: 1px solid rgba(172, 179, 194, .2);
 }
 
-#body-wrapper .posts-section .post-header {
+#body-wrapper .container.grid-lg {
     /* font-weight: 500; */
 
 }

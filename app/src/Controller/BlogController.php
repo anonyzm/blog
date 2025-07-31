@@ -18,7 +18,6 @@ class BlogController
 
     public function index(Request $request): Response
     {
-        // Получаем посты через сервис
         $posts = $this->post->getAll();
 
         $content = $this->twig->render('index.html.twig', [
@@ -32,7 +31,6 @@ class BlogController
     
     public function view(Request $request, string $slug): Response
     {
-        // Получаем пост через сервис
         $post = $this->post->fromSlug($slug);
         
         if (!$post->exists()) {
