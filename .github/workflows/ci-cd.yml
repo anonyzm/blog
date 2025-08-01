@@ -9,7 +9,7 @@ on:
 
 jobs:
   linter:
-    name: PHPStan Analyse
+    name: Run linter
     runs-on: ubuntu-24.04
     
     steps:
