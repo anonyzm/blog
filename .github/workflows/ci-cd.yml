@@ -1,4 +1,4 @@
-name: Linter
+name: CI/CD Pipeline
 
 on:
   pull_request:
@@ -23,32 +23,57 @@ jobs:
           extensions: mbstring exif pcntl bcmath gd
           coverage: none
           
-      - name: Validate composer filess
-        run: composer validate --strict
+      - name: Validate composer files
+        run: |
+          cd app
+          composer validate --strict
         
       - name: Cache Composer packages
         id: composer-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-php-
-            
+
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
         
       - name: Run PHPStan
         run: |
           cd app
-          make run-linter
+          vendor/bin/phpstan analyse src --memory-limit=2G
         
       - name: Upload PHPStan results as artifacts
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: phpstan-results
           path: |
             phpstan-report.txt
             .phpstan.cache
-          retention-days: 7 
+          retention-days: 7
+
+  deploy:
+    name: Deploy to Server
+    runs-on: ubuntu-24.04
+    needs: linter
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts  
+          
+      - name: Deploy to server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            cd /opt/blog && git pull
+            cd /opt/blog && \ 
+            make up && \
+            make composer-install
+          EOF 
