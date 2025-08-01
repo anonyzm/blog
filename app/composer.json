@@ -1,7 +1,14 @@
 {
     "name": "blog/app",
-    "description": "Simple blog application using Symfony components",
+    "description": "anonyzm.tech blog application",
+    "license": "MIT",
     "type": "project",
+    "authors": [
+        {
+            "name": "Leo",
+            "email": "bazoonster@gmail.com"
+        }
+    ],
     "require": {
         "php": ">=8.0",
         "symfony/http-foundation": "^6.0",
