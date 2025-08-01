@@ -7,6 +7,7 @@ use App\Interface\TranslationInterface;
 class TranslationService implements TranslationInterface {
     private string $language = 'ru';
 
+    // TODO: implement yaml file for translations
     private array $translations = [
         'ru_RU' => [
             'read_more' => 'Читать далее',

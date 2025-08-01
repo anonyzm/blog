@@ -53,6 +53,7 @@ class MarkdownPost implements PostInterface
         return !empty($this->url);
     }
 
+    // TODO: looks like method works wrong!!!
     public function isShortened(): bool
     {
         return $this->shortened;

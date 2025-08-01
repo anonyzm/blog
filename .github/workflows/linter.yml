@@ -1,0 +1,54 @@
+name: Linter
+
+on:
+  pull_request:
+    branches: main
+  push:
+    branches: main
+  workflow_dispatch:
+
+jobs:
+  linter:
+    name: PHPStan Analyse
+    runs-on: ubuntu-24.04
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring exif pcntl bcmath gd
+          coverage: none
+          
+      - name: Validate composer filess
+        run: composer validate --strict
+        
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+            
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+        
+      - name: Run PHPStan
+        run: |
+          cd app
+          make run-linter
+        
+      - name: Upload PHPStan results as artifacts
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: phpstan-results
+          path: |
+            phpstan-report.txt
+            .phpstan.cache
+          retention-days: 7 

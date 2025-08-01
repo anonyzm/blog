@@ -37,9 +37,6 @@ class Kernel extends BaseKernel
         return $this->getProjectDir() . '/logs';
     }
 
-    /**
-     * Загружает маршруты из YAML файла
-     */
     public function loadRoutes(): RouteCollection
     {
         $fileLocator = new FileLocator($this->getProjectDir() . '/config');
@@ -47,14 +44,10 @@ class Kernel extends BaseKernel
         return $loader->load('routes.yaml');
     }
 
-    /**
-     * Переопределяем метод для установки параметров в контейнере
-     */
     protected function buildContainer(): ContainerBuilder
     {
         $container = parent::buildContainer();
         
-        // Устанавливаем параметры вручную
         $container->setParameter('kernel.project_dir', $this->getProjectDir());
         $container->setParameter('kernel.cache_dir', $this->getCacheDir());
         $container->setParameter('kernel.logs_dir', $this->getLogDir());
