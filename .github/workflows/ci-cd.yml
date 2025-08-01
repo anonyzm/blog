@@ -76,6 +76,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             cd /opt/blog && git pull
             cd /opt/blog && \ 
-            make up && \
-            make composer-install
+            docker compose up -d && \
+            docker compose exec --user www-data blog-app bash -c "cd /opt/app && composer install"
           EOF 

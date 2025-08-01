@@ -15,20 +15,6 @@ services:
     restart: unless-stopped
     networks:
       - blog-network
-    # command: >
-    #   sh -c "
-    #     echo 'Installing composer...' &&
-    #     cd /opt/app &&
-    #     composer update --optimize-autoloader &&
-    #     echo 'Creating cache folder...' &&
-    #     mkdir -p /opt/app/cache &&
-    #     chmod 777 /opt/app/cache &&
-    #     echo 'Setting permissions...' &&
-    #     chown -R www-data:www-data /opt/app &&
-    #     chmod -R 755 /opt/app &&
-    #     echo 'Starting Supervisor...' &&
-    #     /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
-    #   "
 
 networks:
   blog-network:
