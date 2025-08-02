@@ -1,20 +1,22 @@
 <?php declare(strict_types=1);
 namespace App\Tests;
 
+use App\Interface\ConverterInterface;
 use PHPUnit\Framework\TestCase;
 use App\Domain\MarkdownPost;
-use App\Tests\Stub\ConverterStub;
 
 final class MarkdownPostTest extends TestCase
 {
     public function testMarkdownPostTitle(): void
     {
+        $converterMock = $this->createMock(ConverterInterface::class);
+        $converterMock->method('convert')
+             ->willReturnArgument(0);
+
         $post = new MarkdownPost(
-            new ConverterStub(), 
+            $converterMock, 
             'ru', 
-            __DIR__ . '/Seeds/Post', 
-            '/blog/', 
-            '/posts/'
+            __DIR__ . '/Seeds/Post'
         );
         $result = $post->fromSlug('2000-01-01-test-slug');
 

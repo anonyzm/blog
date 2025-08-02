@@ -46,21 +46,46 @@ jobs:
         run: |
           cd app
           vendor/bin/phpstan analyse src --memory-limit=2G
-        
-      - name: Upload PHPStan results as artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: phpstan-results
-          path: |
-            phpstan-report.txt
-            .phpstan.cache
-          retention-days: 7
 
+  tests:
+    name: Run tests
+    runs-on: ubuntu-24.04
+    needs: linter
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring exif pcntl bcmath gd
+          coverage: none
+          
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        run: |
+          cd app
+          composer install --prefer-dist --no-progress
+        
+      - name: Run PHPUnit tests
+        run: |
+          cd app
+          vendor/bin/phpunit tests --verbose
+        
   deploy:
     name: Deploy to Server
     runs-on: ubuntu-24.04
-    needs: linter
+    needs: [linter, tests]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     
     steps:

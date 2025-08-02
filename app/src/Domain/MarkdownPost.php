@@ -64,7 +64,7 @@ class MarkdownPost implements PostInterface
         $postDirs = scandir($this->basePath);
         $postDirs = array_diff($postDirs, array('.', '..'));
         foreach ($postDirs as $dir) {            
-            if (substr($dir, $slug) !== false) {
+            if (str_contains($dir, $slug) !== false) {
                 return $this->fromDirectory($dir)->toArray();
             }
         }
@@ -234,5 +234,10 @@ class MarkdownPost implements PostInterface
             }
         }
         return $quote;
+    }
+
+    private function isDraft(string $directory): bool
+    {
+        return str_starts_with($directory, '_');
     }
 }
