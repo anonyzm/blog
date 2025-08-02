@@ -23,7 +23,7 @@ class BlogController
         $content = $this->twig->render('index.html.twig', [
             'title' => $this->translationService->translate('main'),
             'read_more' => $this->translationService->translate('read_more'),
-            'posts' => $posts
+            'posts' => array_map(fn(PostInterface $post) => $post->toArray(), $posts)
         ]);
         
         return new Response($content);
@@ -38,10 +38,9 @@ class BlogController
         }
         
         $content = $this->twig->render('post.html.twig', [
-            'title' => $post['title'],
-            'post' => $post
+            'post' => $post->toArray()
         ]);
         
         return new Response($content);
     }
-} 
+}

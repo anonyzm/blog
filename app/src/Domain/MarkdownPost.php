@@ -24,7 +24,7 @@ class MarkdownPost implements PostInterface
     private string $baseUrl = '/blog/';
     private string $language = 'ru';
     
-    private array $imgExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+    private array $imgExtensions = ['png', 'jpg', 'jpeg', 'gif', 'webp'];
     private int $excerptLength = 500;
 
     public function __construct(
@@ -37,11 +37,11 @@ class MarkdownPost implements PostInterface
         if ($basePath) {
             $this->basePath = $basePath;
         }
-        if ($imgBaseUrl) {
-            $this->imgBaseUrl = $baseUrl;
-        }
         if ($baseUrl) {
             $this->baseUrl = $baseUrl;
+        }
+        if ($imgBaseUrl) {
+            $this->imgBaseUrl = $imgBaseUrl;
         }
         if ($language) {
             $this->language = $language;
@@ -53,22 +53,25 @@ class MarkdownPost implements PostInterface
         return !empty($this->url);
     }
 
-    // TODO: looks like method works wrong!!!
+    // TODO: looks like this method works wrong!!!
     public function isShortened(): bool
     {
         return $this->shortened;
     }
     
-    public function fromSlug(string $slug): array
+    public function fromSlug(string $slug): PostInterface
     {
         $postDirs = scandir($this->basePath);
         $postDirs = array_diff($postDirs, array('.', '..'));
-        foreach ($postDirs as $dir) {            
+        foreach ($postDirs as $dir) {     
             if (str_contains($dir, $slug) !== false) {
-                return $this->fromDirectory($dir)->toArray();
+                if ($this->isDraft($dir)) {
+                    break;
+                }
+                return $this->fromDirectory($dir);
             }
         }
-        return $this->toArray();
+        return new self($this->converter, $this->language, $this->basePath, $this->baseUrl, $this->imgBaseUrl);
     }
 
     public function getAll(): array
@@ -77,15 +80,22 @@ class MarkdownPost implements PostInterface
         $postDirs = array_diff($postDirs, array('.', '..'));
         $postDirs = array_reverse($postDirs);
         $posts = [];
-        foreach ($postDirs as $item) {
-            $posts[] = $this->fromDirectory($item)->toArray();
+        foreach ($postDirs as $postDir) {
+            if ($this->isDraft($postDir)) {
+                continue;
+            }
+            $posts[] = new self(
+                $this->converter, 
+                $this->language, 
+                $this->basePath, 
+                $this->baseUrl, 
+                $this->imgBaseUrl
+            )->fromDirectory($postDir);
         }
         return $posts;
     }
 
-    //----------------------- private-methods -----------------------
-
-    private function toArray(): array
+    public function toArray(): array
     {
         return [
             'title' => $this->title,
@@ -99,30 +109,31 @@ class MarkdownPost implements PostInterface
         ];
     }
 
+    //----------------------- private-methods -----------------------
+
     private function fromDirectory(string $directory): self
     {
-        $url = $this->getPostUrl($directory);
-        $date = $this->getPostDate($directory);
         $content = $this->getPostContent($directory);
-        $title = $this->getPostTitle($directory);
-        $quote = $this->getPostQuote($content);
-        $image = $this->getPostImageUrl($directory);        
-        $excerpt = $this->getPostExcerpt($content);
-        
-        $this->title = $title;
-        $this->quote = $quote;
-        $this->url = $url;
-        $this->excerpt = $excerpt;
-        $this->image = $image;
+        $this->title = $this->getPostTitle($directory);
+        $this->url = $this->getPostUrl($directory);
+        $this->image = $this->getPostImageUrl($directory); 
+        $this->date = $this->getPostDate($directory);
         $this->content = $content;
-        $this->date = $date;
-
+        $this->quote = $this->getPostQuote($content);
+        $this->excerpt = $this->getPostExcerpt($content);
         return $this;
     }
 
     private function getPostUrl(string $directory): string 
     {
-        return $this->baseUrl . $directory;
+        $chunks = explode('-', $directory);
+        if (count($chunks) > 3) {
+            unset($chunks[0]);
+            unset($chunks[1]);
+            unset($chunks[2]);
+            return $this->baseUrl . implode('-', $chunks);
+        }
+        return '';
     }
 
     private function getPostImageUrl(string $directory): string|bool
@@ -177,7 +188,7 @@ class MarkdownPost implements PostInterface
         $title = '';
         if (file_exists($file)) {
             $content = file($file);
-            foreach ($content as $key => $line) {
+            foreach ($content as $line) {
                 if (str_starts_with($line, '# ')) {
                     $title = trim(str_replace('# ', '', $line));
                     break;
