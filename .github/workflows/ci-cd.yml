@@ -80,7 +80,7 @@ jobs:
       - name: Run PHPUnit tests
         run: |
           cd app
-          vendor/bin/phpunit tests --verbose
+          vendor/bin/phpunit tests
         
   deploy:
     name: Deploy to Server
