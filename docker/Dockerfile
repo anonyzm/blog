@@ -38,6 +38,13 @@ COPY docker/nginx.conf /etc/nginx/sites-available/default
 # Копируем конфигурацию Supervisor
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+RUN groupadd --gid 1001 application 
+RUN useradd --uid 1001 --gid application --shell /bin/bash --create-home application
+RUN usermod -aG sudo application
+RUN usermod -aG www-data application
+
+USER application
+
 # Копируем composer.json и устанавливаем зависимости
 COPY app/composer.json ./
 RUN composer install --no-dev --optimize-autoloader
@@ -45,13 +52,11 @@ RUN composer install --no-dev --optimize-autoloader
 # Копируем исходный код приложения
 COPY app/ ./
 
-# COPY check-coverage.sh /opt/check-coverage.sh
-
 # Создаем папку для кэша и устанавливаем права
 RUN mkdir -p cache && chmod 777 cache
 
 # Устанавливаем права на папки
-RUN chown -R www-data:www-data /opt/app \
+RUN chown -R application:application /opt/app \
     && chmod -R 755 /opt/app
 
 # Открываем порт 80
