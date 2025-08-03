@@ -25,7 +25,7 @@ class TranslationService implements TranslationInterface {
             $this->locale = $locale;
         }
         else {
-            $this->language = $this->getLocale();
+            $this->locale = $this->getLocale();
         }
     }
 
