@@ -23,16 +23,17 @@ class MarkdownPost implements PostInterface
     private string $imgBaseUrl = '/posts/';
     private string $baseUrl = '/blog/';
     private string $language = 'ru';
-    
-    private array $imgExtensions = ['png', 'jpg', 'jpeg', 'gif', 'webp'];
     private int $excerptLength = 500;
+
+    private array $imgExtensions = ['png', 'jpg', 'jpeg', 'gif', 'webp'];
 
     public function __construct(
         private ConverterInterface $converter,
         string $language = '', 
         string $basePath = '', 
         string $baseUrl = '', 
-        string $imgBaseUrl = ''
+        string $imgBaseUrl = '',
+        int $excerptLength = 500
     ) {
         if ($basePath) {
             $this->basePath = $basePath;
@@ -46,6 +47,9 @@ class MarkdownPost implements PostInterface
         if ($language) {
             $this->language = $language;
         }
+        if ($excerptLength) {
+            $this->excerptLength = $excerptLength;
+        }
     }
 
     public function exists(): bool
@@ -53,7 +57,6 @@ class MarkdownPost implements PostInterface
         return !empty($this->url);
     }
 
-    // TODO: looks like this method works wrong!!!
     public function isShortened(): bool
     {
         return $this->shortened;
@@ -201,8 +204,8 @@ class MarkdownPost implements PostInterface
     private function getPostExcerpt(string $content): string 
     {
         $lines = explode($this->crlf, $content);
+        $excerptUncut = '';
         $excerpt = '';
-        $excerptText = '';
         $quoteStarted = false;
         $quotePassed = false;
         $textLeft = $this->excerptLength;
@@ -211,23 +214,28 @@ class MarkdownPost implements PostInterface
                 $quoteStarted = true;
                 continue;
             }
-            if ($quoteStarted && !str_starts_with($line, '>')) { 
+            if ($quoteStarted && !$quotePassed && !str_starts_with($line, '>')) { 
                 $quotePassed = true;
+                $line = trim($line);
+                if ($line === '' || $line === $this->crlf) {
+                    continue; // passing by first empty line after quote
+                }
             }
             if ($quotePassed) {
-                $textLeft -= strlen($line);
+                $textLeft -= mb_strlen($line);
+                $excerptUncut .= $line . $this->crlf;
                 if ($textLeft <= 0) {
                     break;
                 }
-                $excerptText .= $line . $this->crlf;
+
             }
         }
-        $excerptText .= mb_substr($line, 0, $this->excerptLength);
+        $excerpt = mb_substr($excerptUncut, 0, $this->excerptLength);
         if ($textLeft < 0) {
-            $excerptText .= '...';
+            $excerpt .= '...';
             $this->shortened = true;
         }
-        return $excerpt . $excerptText;
+        return $excerpt;
     }
 
     private function getPostQuote(string $content): string 

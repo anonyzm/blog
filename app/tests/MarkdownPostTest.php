@@ -122,25 +122,26 @@ final class MarkdownPostTest extends TestCase
         $converterMock->method('convert')
              ->willReturnArgument(0);
 
+        $excerptLength = 100;
+        $imgBaseUrl = '/posts/';
+        $basePath = __DIR__ . '/Seeds/Post/';
         $post = new MarkdownPost(
             $converterMock, 
             'ru', 
-            __DIR__ . '/Seeds/Post/'
+            $basePath,
+            '/blog/',
+            $imgBaseUrl,
+            $excerptLength
         );
 
         $result1 = $post->fromSlug('test-slug')->toArray();
         $result2 = $post->fromSlug('second-test')->toArray();
-        $this->setCRLF($result1['excerpt']);
         
-        $quote1 = "> I'll be back!" . $this->crlf .
-            ">" . $this->crlf .
-            "> <cite>- Arnold Schwarzenegger</cite>" . $this->crlf;
-        $quote2 = "> I'm back!" . $this->crlf .
-            ">" . $this->crlf .
-            "> <cite>- Arnold the Hogger</cite>" . $this->crlf;
+        $excerpt1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ...";
+        $excerpt2 = "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classi...";
 
-        $this->assertSame($quote1, $result1['excerpt']);     
-        $this->assertSame($quote2, $result2['excerpt']);  
+        $this->assertSame($excerpt1, $result1['excerpt']);     
+        $this->assertSame($excerpt2, $result2['excerpt']);  
     }
 
     public function testMarkdownPostContent(): void
