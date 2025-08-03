@@ -1,6 +1,11 @@
 up:
 	docker compose up -d
 
+deploy:
+	docker compose build
+	docker compose up -d --force-recreate
+	docker compose exec --user application blog-app composer install
+
 down:
 	docker compose down
 

@@ -129,6 +129,5 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             cd /opt/blog && \
             git pull && \
-            make up && \
-            make composer-install
+            make deploy
           EOF 
