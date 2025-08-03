@@ -51,3 +51,6 @@ run-tests-coverage:
 
 run-tests-coverage-pcov:
 	docker compose exec blog-app bash -c "cd /opt/app && XDEBUG_MODE=off vendor/bin/phpunit --coverage-text --coverage-filter=src tests"
+
+get-coverage-percentage:
+	docker compose exec blog-app bash -c "cd /opt/app && vendor/bin/phpunit --coverage-clover=coverage.xml --coverage-filter=src tests && /opt/check-coverage.sh coverage.xml"

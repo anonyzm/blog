@@ -3,11 +3,13 @@ FROM php:8.4-fpm
 
 # Устанавливаем системные зависимости
 RUN apt-get update && apt-get install -y \
+    bc \
     git \
     curl \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
+    libxml2-utils \
     zip \
     unzip \
     nginx \
@@ -43,6 +45,8 @@ RUN composer install --no-dev --optimize-autoloader
 # Копируем исходный код приложения
 COPY app/ ./
 
+# COPY check-coverage.sh /opt/check-coverage.sh
+
 # Создаем папку для кэша и устанавливаем права
 RUN mkdir -p cache && chmod 777 cache
 
@@ -54,4 +58,4 @@ RUN chown -R www-data:www-data /opt/app \
 EXPOSE 80
 
 # Запускаем Supervisor для управления процессами
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"] 
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
