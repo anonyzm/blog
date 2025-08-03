@@ -5,7 +5,7 @@ namespace App\Service;
 use App\Interface\TranslationInterface;
 
 class TranslationService implements TranslationInterface {
-    private string $language = 'ru';
+    private string $locale = '';
 
     // TODO: implement yaml file for translations
     private array $translations = [
@@ -19,23 +19,25 @@ class TranslationService implements TranslationInterface {
         ]
     ];
 
-    public function __construct(string $language = '') 
+    public function __construct(string $locale = '') 
     {
-        $this->language = $this->getLocale();
-        if ($language) {
-            $this->language = $language;
+        if ($locale) {
+            $this->locale = $locale;
+        }
+        else {
+            $this->language = $this->getLocale();
         }
     }
 
     public function translate(string $text): string 
     {
-        return $this->translations[$this->language][$text] ?? $text;
+        return $this->translations[$this->locale][$text] ?? $text;
     }
 
     //----------------------private-methods----------------------
 
     private function getLocale(): string
     {
-        return $GLOBALS['locale'];
+        return $GLOBALS['locale'] ?? 'ru_RU';
     }
 }

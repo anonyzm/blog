@@ -8,25 +8,25 @@
 }
 
 .notices.yellow {
-    border-left: 10px solid #f0ad4e;
+    border-left: 5px solid #f0ad4e;
     background: #fcf8f2;
     color: #df8a13;
 }
 
 .notices.red {
-    border-left: 10px solid #d9534f;
+    border-left: 5px solid #d9534f;
     background: #fdf7f7;
     color: #b52b27;
 }
 
 .notices.blue {
-    border-left: 10px solid #5bc0de;
+    border-left: 5px solid #5bc0de;
     background: #f4f8fa;
     color: #28a1c5;
 }
 
 .notices.green {
-    border-left: 10px solid #5cb85c;
+    border-left: 5px solid #5cb85c;
     background: #f1f9f1;
     color: #3d8b3d;
 }

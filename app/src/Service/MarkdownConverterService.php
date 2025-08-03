@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Interface\ConverterInterface;
-use App\Trait\CrlfTrait;
 
 class MarkdownConverterService implements ConverterInterface
 {

@@ -5,7 +5,12 @@ down:
 	docker compose down
 
 build:
-	docker compose build
+	docker compose build --no-cache
+
+rebuild:
+	docker compose down
+	docker compose build --no-cache
+	docker compose up -d
 
 logs:
 	docker compose logs -f blog-app
@@ -34,3 +39,15 @@ run-linter:
 
 run-tests:
 	docker compose exec blog-app bash -c "cd /opt/app && vendor/bin/phpunit tests"
+
+check-xdebug:
+	docker compose exec blog-app bash -c "php -m | grep xdebug || echo 'Xdebug not found'"
+
+check-pcov:
+	docker compose exec blog-app bash -c "php -m | grep pcov || echo 'PCOV not found'"
+
+run-tests-coverage:
+	docker compose exec blog-app bash -c "cd /opt/app && vendor/bin/phpunit --coverage-text --coverage-filter=src tests"
+
+run-tests-coverage-pcov:
+	docker compose exec blog-app bash -c "cd /opt/app && XDEBUG_MODE=off vendor/bin/phpunit --coverage-text --coverage-filter=src tests"

@@ -14,6 +14,16 @@ RUN apt-get update && apt-get install -y \
     supervisor \
     && docker-php-ext-install mbstring exif pcntl bcmath gd
 
+# Устанавливаем драйверы покрытия кода
+RUN pecl install xdebug pcov \
+    && docker-php-ext-enable xdebug pcov
+
+# Настраиваем Xdebug для покрытия кода
+RUN echo "xdebug.mode=coverage" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.discover_client_host=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
 # Устанавливаем Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
