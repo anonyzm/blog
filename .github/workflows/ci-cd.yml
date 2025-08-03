@@ -87,7 +87,6 @@ jobs:
       - name: Check code coverage threshold
         run: |
           cd app
-          THRESHOLD=90
           total=$(xmllint --xpath 'string(//project/metrics/@statements)' coverage.xml)
           covered=$(xmllint --xpath 'string(//project/metrics/@coveredstatements)' coverage.xml)
           if [ "$total" -gt 0 ]; then
@@ -97,11 +96,11 @@ jobs:
               echo "Error getting coverage data!"
               exit 1
           fi
-          if [ $intcoverage -lt $THRESHOLD ]; then
-            echo "❌ Code coverage ($intcoverage%) is lower than minimum threshold ($THRESHOLD%)"
+          if [ $intcoverage -lt ${{ vars.TEST_COVERAGE_THRESHOLD }} ]; then
+            echo "❌ Code coverage ($intcoverage%) is lower than minimum threshold (${{ vars.TEST_COVERAGE_THRESHOLD }}%)"
             exit 1
           else
-            echo "✅ Code coverage ($intcoverage%) is greater than or equal to minimum threshold ($THRESHOLD%)"
+            echo "✅ Code coverage ($intcoverage%) is greater than or equal to minimum threshold (${{ vars.TEST_COVERAGE_THRESHOLD }}%)"
           fi
         
       - name: Upload coverage report
