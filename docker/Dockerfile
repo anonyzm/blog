@@ -63,4 +63,4 @@ RUN chown -R application:application /opt/app \
 EXPOSE 80
 
 # Запускаем Supervisor для управления процессами
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["sudo", "/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
