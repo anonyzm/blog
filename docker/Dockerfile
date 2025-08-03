@@ -42,6 +42,7 @@ COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN groupadd --gid 1001 application 
 RUN useradd --uid 1001 --gid application --shell /bin/bash --create-home application
 RUN usermod -aG www-data application
+RUN usermod -aG application www-data
 
 # Копируем composer.json и устанавливаем зависимости
 COPY app/composer.json ./
@@ -52,6 +53,7 @@ COPY app/ ./
 
 # Создаем папку для кэша и устанавливаем права
 RUN mkdir -p cache && chmod 777 cache
+RUN chown -R application:application /opt/app/cache
 
 # Устанавливаем права на папки
 RUN chown -R application:application /opt/app \
