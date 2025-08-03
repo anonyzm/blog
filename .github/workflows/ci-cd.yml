@@ -82,7 +82,7 @@ jobs:
       - name: Run PHPUnit tests with coverage
         run: |
           cd app
-          vendor/bin/phpunit --coverage-text --coverage-filter=src --coverage-php=coverage.php tests
+          vendor/bin/phpunit --coverage-text --coverage-filter=src --coverage-clover=coverage.xml tests
         
       - name: Check code coverage threshold
         run: |
