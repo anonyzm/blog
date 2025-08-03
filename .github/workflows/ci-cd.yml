@@ -80,12 +80,12 @@ jobs:
       - name: Run PHPUnit tests with coverage
         run: |
           cd app
-          vendor/bin/phpunit --coverage-text --coverage-filter=src --coverage-clover=coverage.xml tests
+          vendor/bin/phpunit --coverage-text --coverage-filter=src --coverage-php=coverage.php tests
         
       - name: Check code coverage threshold
         run: |
           cd app
-          cat coverage.xml
+          cat coverage.php
           # Извлекаем процент покрытия строк из XML отчета
           COVERAGE=$(grep -o 'lines-covered="[0-9]*"' coverage.xml | grep -o '[0-9]*' | head -1)
           TOTAL=$(grep -o 'lines-valid="[0-9]*"' coverage.xml | grep -o '[0-9]*' | head -1)
