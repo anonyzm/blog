@@ -38,12 +38,10 @@ COPY docker/nginx.conf /etc/nginx/sites-available/default
 # Копируем конфигурацию Supervisor
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# Создаем пользователя для приложения
 RUN groupadd --gid 1001 application 
 RUN useradd --uid 1001 --gid application --shell /bin/bash --create-home application
-RUN usermod -aG sudo application
 RUN usermod -aG www-data application
-
-USER application
 
 # Копируем composer.json и устанавливаем зависимости
 COPY app/composer.json ./
@@ -57,10 +55,12 @@ RUN mkdir -p cache && chmod 777 cache
 
 # Устанавливаем права на папки
 RUN chown -R application:application /opt/app \
-    && chmod -R 755 /opt/app
+    && chmod -R 755 /opt/app \
+    && chown -R application:application /var/log/supervisor \
+    && chown -R application:application /var/run
 
 # Открываем порт 80
 EXPOSE 80
 
 # Запускаем Supervisor для управления процессами
-CMD ["sudo", "/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

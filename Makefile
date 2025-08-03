@@ -29,10 +29,10 @@ clean:
 	docker volume prune -f
 
 composer-install:
-	docker compose exec --user www-data blog-app composer install
+	docker compose exec --user application blog-app composer install
 
 composer-update:
-	docker compose exec --user www-data blog-app composer update
+	docker compose exec --user application blog-app composer update
 
 run-linter:
 	docker compose exec blog-app bash -c "cd /opt/app && vendor/bin/phpstan analyse src --memory-limit=2G"
