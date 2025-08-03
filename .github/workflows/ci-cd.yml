@@ -92,16 +92,16 @@ jobs:
           covered=$(xmllint --xpath 'string(//project/metrics/@coveredstatements)' coverage.xml)
           if [ "$total" -gt 0 ]; then
               coverage=$(echo "scale=2; $covered / $total * 100" | bc)
-              echo "$coverage"
+              intcoverage=$( printf "%.0f" $coverage )
           else
               echo "Error getting coverage data!"
               exit 1
           fi
-          if [ $coverage -lt $THRESHOLD ]; then
-            echo "❌ Code coverage ($coverage%) is lower than minimum threshold ($THRESHOLD%)"
+          if [ $intcoverage -lt $THRESHOLD ]; then
+            echo "❌ Code coverage ($intcoverage%) is lower than minimum threshold ($THRESHOLD%)"
             exit 1
           else
-            echo "✅ Code coverage ($coverage%) is greater than or equal to minimum threshold ($THRESHOLD%)"
+            echo "✅ Code coverage ($intcoverage%) is greater than or equal to minimum threshold ($THRESHOLD%)"
           fi
         
       - name: Upload coverage report
