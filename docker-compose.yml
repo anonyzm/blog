@@ -4,7 +4,6 @@ services:
       context: .
       dockerfile: docker/Dockerfile
     container_name: php
-    user: "1001:1001"
     ports:
       - "80:80"
     volumes:
