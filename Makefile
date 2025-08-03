@@ -21,7 +21,7 @@ logs:
 	docker compose logs -f blog-app
 
 bash:
-	docker compose exec blog-app bash
+	docker compose exec --user application blog-app bash
 
 restart:
 	docker compose restart
