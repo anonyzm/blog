@@ -85,6 +85,7 @@ jobs:
       - name: Check code coverage threshold
         run: |
           cd app
+          cat coverage.xml
           # Извлекаем процент покрытия строк из XML отчета
           COVERAGE=$(grep -o 'lines-covered="[0-9]*"' coverage.xml | grep -o '[0-9]*' | head -1)
           TOTAL=$(grep -o 'lines-valid="[0-9]*"' coverage.xml | grep -o '[0-9]*' | head -1)
