@@ -1,4 +1,10 @@
 services:
+  init_permissions:
+    image: busybox 
+    volumes:
+      - logs_volume:/logs
+      - cache_volume:/cache
+    command: chmod -R 775 /logs && chmod -R 775 /cache
   blog-app:
     build:
       context: .
@@ -8,6 +14,8 @@ services:
       - "80:80"
     volumes:
       - ./app:/opt/app
+      - cache_volume:/opt/app/cache
+      - logs_volume:/opt/app/logs
     environment:
       - PHP_IDE_CONFIG=serverName=blog-app
     restart: unless-stopped
@@ -17,3 +25,7 @@ services:
 networks:
   blog-network:
     driver: bridge
+
+volumes:
+  cache_volume:    
+  logs_volume:

@@ -26,6 +26,11 @@ RUN echo "xdebug.mode=coverage" >> /usr/local/etc/php/conf.d/docker-php-ext-xdeb
     && echo "xdebug.discover_client_host=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
+# Настройки PHP для подавления предупреждений
+RUN echo "error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT" >> /usr/local/etc/php/conf.d/docker-php-custom.ini
+    # && echo "display_errors = Off" >> /usr/local/etc/php/conf.d/docker-php-custom.ini \
+    # && echo "log_errors = On" >> /usr/local/etc/php/conf.d/docker-php-custom.ini
+
 # Устанавливаем Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -51,13 +56,11 @@ RUN composer install --no-dev --optimize-autoloader
 # Копируем исходный код приложения
 COPY app/ ./
 
-# Создаем папку для кэша и устанавливаем права
-RUN mkdir -p cache && chmod 777 cache
-RUN chown -R application:application /opt/app/cache
-
 # Устанавливаем права на папки
 RUN chown -R application:application /opt/app \
     && chmod -R 755 /opt/app \
+    && chmod -R 775 /opt/app/cache \
+    && chmod -R 775 /opt/app/logs \
     && chown -R application:application /var/log/supervisor \
     && chown -R application:application /var/run
 
