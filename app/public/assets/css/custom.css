@@ -15,6 +15,10 @@
     text-align: center;
 }
 
+#body-wrapper .post-header {
+    margin-bottom: 1.5rem;
+}
+
 #body-wrapper .container.grid-lg {
     /* font-weight: 500; */
 
@@ -154,6 +158,11 @@
     margin-left: 225px;
 }
 
+#body-wrapper .post-content h2 {
+    text-align: left;
+    font-size: 1.4rem;
+}
+
 /* Responsive design for small screens */
 @media (max-width: 400px) {
     #body-wrapper .posts-section .post-quote-section {
@@ -175,6 +184,18 @@
         float: none;
         max-width: 100%;
         margin: 0 0 1rem 0;
+    }
+}
+
+/* Responsive design for small screens */
+@media (max-width: 576px) {
+    .post-full .post-image {
+        width: 100%;
+        float: none;
+    }
+
+    .post-full .post-content blockquote:first-of-type {
+        margin-left: 0;
     }
 }
 
