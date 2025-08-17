@@ -6,16 +6,17 @@
 <article class="post-full fade-in">
     <header class="post-header">
         <h1 class="post-full-title">{{ post.title }}</h1>
-        <div class="post-full-meta">
-            <span class="post-date">{{ post.date }}</span>
-            <span class="post-author">Автор: {{ post.author }}</span>
-        </div>
     </header>
     
     <div class="post-content">
+        {% if post.image %}
+                <div class="post-image">
+                <img src="{{ post.image }}" alt="{{ post.title }}" class="post-thumbnail">
+            </div>
+        {% endif %}
         {{ post.content|raw }}
     </div>
-    
+    <span class="post-date">{{ post.date }}</span>
     <div class="post-footer mt-4">
         <a href="/" class="btn btn-back">← Вернуться к списку публикаций</a>
     </div>

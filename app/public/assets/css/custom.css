@@ -6,6 +6,15 @@
     border-bottom: 1px solid rgba(172, 179, 194, .2);
 }
 
+#header .navbar-title {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+}
+
+#top-wrapper .container p {
+    text-align: center;
+}
+
 #body-wrapper .container.grid-lg {
     /* font-weight: 500; */
 
@@ -123,6 +132,26 @@
     font-size: 14px;
     color: #6c757d;
     font-style: italic;
+}
+
+.post-full .post-date {
+    display: block;
+    font-style: italic;
+    font-size: 17px;
+    margin-bottom: 1rem;
+    border-left: .2rem solid #bbbbbb;
+    padding: .2rem 1rem;
+    margin-top: 1rem;
+    font-weight: 400;
+}
+
+.post-full .post-image {
+    width: 200px;
+    float: left;
+}
+
+.post-full .post-content blockquote:first-of-type {
+    margin-left: 225px;
 }
 
 /* Responsive design for small screens */
